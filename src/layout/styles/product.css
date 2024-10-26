@@ -1,0 +1,29 @@
+.product-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media only screen and (min-width: 768px) {
+    .product-wrapper {
+        margin-top: 3rem;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    .product-wrapper {
+        margin-top: 2rem;
+        margin-bottom: 5rem;
+        gap: 5rem;
+        display: grid;
+        grid-template-columns: 44.5rem 44.5rem;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .product-wrapper {
+        margin-top: 5rem;
+        margin-bottom: 5rem;
+        gap: 11rem;
+    }
+}

@@ -1,0 +1,112 @@
+.overlay-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inner-overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+}
+
+.close-btn {
+    position: absolute;
+    top: 10rem;
+    right: 70rem;
+    margin-bottom: 0;
+    z-index: 1100;
+}
+
+.overlay-wrapper .splide {
+    cursor: pointer;
+    width: 55rem;
+    height: 55rem;
+    margin-bottom: 15rem;
+}
+
+.splide__slide {
+    overflow: hidden;
+    border-radius: 1.5rem;
+    width: 55rem;
+    height: 55rem;
+}
+
+.splide__arrow,
+.splide__arrow:disabled {
+    opacity: 1;
+}
+
+.splide__arrow {
+    background-color: var(--white);
+    height: 5.6rem;
+    width: 5.6rem;
+}
+
+.splide__arrow--prev {
+    left: -2.8rem;
+}
+
+.splide__arrow--next {
+    right: -2.8rem;
+}
+
+.inner-overlay img {
+    display: block;
+    width: 100%;
+}
+
+.close-btn {
+    align-self: stretch;
+    svg path {
+        transition: 0.2s ease fill;
+    }
+
+    &:hover svg path {
+        fill: white;
+    }
+}
+
+.thumbnails {
+    background-color: #232f3e;
+    border-radius: 10px;
+    width: 448px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    gap: 3.1rem;
+}
+
+.thumb-btn {
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: 0.3s ease opacity;
+}
+
+.thumb-btn.active {
+    img {
+        opacity: 0.5;
+    }
+    outline: 0.2rem solid white;
+}
+
+.thumb-btn:hover {
+    opacity: 0.8;
+}
+
+.thumbnails button {
+    overflow: hidden;
+    height: 8.8rem;
+    width: 8.8rem;
+    border-radius: 1rem;
+
+}

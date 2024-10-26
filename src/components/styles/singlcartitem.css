@@ -1,0 +1,53 @@
+.single-item-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+    justify-content: space-between;
+}
+
+.single-item-wrapper img {
+    border-radius: 0.4rem;
+    width: 5rem;
+    height: 5rem;
+}
+
+.item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    flex-grow: 1;
+}
+
+.item-info .name {
+    font-size: 1.6rem;
+    color: var(--dark-grayish-blue);
+    margin-bottom: 0.4rem;
+}
+
+.item-info .total {
+    font-size: 1.6rem;
+}
+
+.item-info .total span {
+    margin-left: 0.5rem;
+    font-weight: 700;
+}
+
+.button {
+    margin-right: 1rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: fill 0.3s ease;
+}
+
+.button:hover svg use {
+    fill: red;
+}
+
+.button svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+

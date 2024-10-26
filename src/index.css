@@ -1,0 +1,79 @@
+/* index.css */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+
+}
+
+
+/* це просто змінні кольору, мені було їх лінь прибирати або перейменовувати */
+:root {
+  --black: #000000;
+  --orange: #1c1c1c;
+  --pale-orange: #fff5e6;
+  --very-dark-blue: #1c1c1c;
+  --dark-grayish-blue: #737373;
+  --grayish-blue: #bfc9d3;
+  --light-grayish-blue: #f1f8ff;
+  --white: #ffffff;
+  --divider: #d1e3ed;
+}
+
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: "Kumbh Sans", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+
+button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.splide__slide {
+  display: flex;
+  justify-content: center;
+}
+
+.splide img {
+  width: 100%;
+}
+.main-content {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.content{
+    flex: 1;
+}
+
+/* кастом скроллбар */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #232f3e #d6dbec;
+}

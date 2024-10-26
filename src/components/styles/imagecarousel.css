@@ -1,0 +1,81 @@
+.carousel-wrapper {
+    cursor: pointer;
+    width: 100%;
+}
+
+/*головне зображення*/
+.splide {
+    width: 100%;
+    max-height: 390px;
+}
+
+.splide__arrow {
+    background-color: var(--white);
+    opacity: 1;
+    height: 3rem;
+    width: 4rem;
+}
+
+/*крутилка*/
+.carousel-wrapper img {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+}
+
+.thumbnails {
+    display: none;
+}
+
+@media only screen and (min-width: 768px) {
+    .carousel-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 3.2rem;
+        max-width: 80%;
+        margin: 0 auto;
+    }
+
+    .splide__arrow {
+        display: none;
+    }
+
+    .thumbnails {
+        display: flex;
+        margin-top: 3rem;
+        gap: 3rem;
+    }
+
+    .thumb-btn {
+        border-radius: 1rem;
+        overflow: hidden;
+        transition: 0.3s ease opacity;
+    }
+
+    .thumb-btn.active {
+        img {
+            opacity: 0.5;
+        }
+        outline: 0.2rem solid white;
+    }
+
+    .thumb-btn:hover {
+        opacity: 0.8;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    .carousel-wrapper {
+        max-width: 100%;
+        margin-bottom: 3rem;
+    }
+
+    .splide__slide img {
+        border-radius: 1.5rem;
+    }
+
+    .splide__arrow--next,
+    .splide__arrow--prev {
+        display: none;
+    }
+}
