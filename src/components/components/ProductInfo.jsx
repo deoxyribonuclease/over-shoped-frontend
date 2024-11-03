@@ -14,9 +14,10 @@ const ProductInfo = (x) => {
             <p className="price">
               ₴
               {x.isOnSale
-                  ? (x.productPrice * x.salePercent).toFixed(2)
+                  ? (x.productPrice * (1 - x.salePercent)).toFixed(2)
                   : x.productPrice.toFixed(2)}
             </p>
+
             {x.isOnSale && (
                 <p className="percent">{(x.salePercent * 100).toFixed(2) + "%"}</p>
             )}

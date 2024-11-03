@@ -1,42 +1,68 @@
-// ProductGrid.jsx
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import ProductCard from "./ProductCard.jsx";
+import ReactPaginate from "react-paginate";
+import '../styles/Pagination.css';
+import { getPaginatedProducts } from "../../api/ItemsApi.jsx";
 
-const products = [
-    { "id": 1, "name": "Я не піду", "price": 999, "rating": 4.5, "brand": "Ухилянт", "image": "https://media1.tenor.com/m/krDN2mcxlJcAAAAd/%D1%8F-%D0%BD%D0%B5-%D0%BF%D1%96%D0%B4%D1%83.gif",
-        "isOnSale": true,
-        "salePercent": 0.3 },
-    { "id": 2, "name": "Я не піду", "price": 1000, "rating": 4.5, "brand": "Ухилянт", "image": "https://media1.tenor.com/m/krDN2mcxlJcAAAAd/%D1%8F-%D0%BD%D0%B5-%D0%BF%D1%96%D0%B4%D1%83.gif"  },
-    { "id": 3, "name": "Я не піду", "price": 1000, "rating": 4.5, "brand": "Ухилянт", "image": "https://media1.tenor.com/m/krDN2mcxlJcAAAAd/%D1%8F-%D0%BD%D0%B5-%D0%BF%D1%96%D0%B4%D1%83.gif",
-        "isOnSale": true,
-        "salePercent": 0.2 },
-    { "id": 4, "name": "Я не піду", "price": 1000, "rating": 4.5, "brand": "Ухилянт", "image": "https://media1.tenor.com/m/krDN2mcxlJcAAAAd/%D1%8F-%D0%BD%D0%B5-%D0%BF%D1%96%D0%B4%D1%83.gif" },
-    { "id": 5, "name": "Я не піду", "price": 1000, "rating": 4.5, "brand": "Ухилянт", "image": "https://media1.tenor.com/m/krDN2mcxlJcAAAAd/%D1%8F-%D0%BD%D0%B5-%D0%BF%D1%96%D0%B4%D1%83.gif" },
-    { "id": 6, "name": "Я не піду", "price": 1999, "rating": 4.5, "brand": "Ухилянт", "image": "https://media1.tenor.com/m/krDN2mcxlJcAAAAd/%D1%8F-%D0%BD%D0%B5-%D0%BF%D1%96%D0%B4%D1%83.gif",
-        "isOnSale": true,
-        "salePercent": 0.7 },
-    { "id": 7, "name": "Я не піду", "price": 1000, "rating": 4.5, "brand": "Ухилянт", "image": "https://media1.tenor.com/m/krDN2mcxlJcAAAAd/%D1%8F-%D0%BD%D0%B5-%D0%BF%D1%96%D0%B4%D1%83.gif" },
-    { "id": 8, "name": "Я не піду", "price": 1000, "rating": 4.5, "brand": "Ухилянт", "image": "https://media1.tenor.com/m/krDN2mcxlJcAAAAd/%D1%8F-%D0%BD%D0%B5-%D0%BF%D1%96%D0%B4%D1%83.gif" },
-    { "id": 9, "name": "Я не піду", "price": 1000, "rating": 4.5, "brand": "Ухилянт", "image": "https://media1.tenor.com/m/krDN2mcxlJcAAAAd/%D1%8F-%D0%BD%D0%B5-%D0%BF%D1%96%D0%B4%D1%83.gif" },
-    {
-        "id": 10,
-        "name": "Я не піду",
-        "price": 1000,
-        "rating": 4.5,
-        "brand": "Ухилянт",
-        "image": "https://media1.tenor.com/m/krDN2mcxlJcAAAAd/%D1%8F-%D0%BD%D0%B5-%D0%BF%D1%96%D0%B4%D1%83.gif",
-        "isOnSale": true,
-        "salePercent": 0.2
-    }
-
-];
+function useQuery() {
+    return new URLSearchParams(useLocation().search);
+}
 
 function ProductGrid() {
+    const [products, setProducts] = useState([]);
+    const [totalPages, setTotalPages] = useState(0);
+    const [loading, setLoading] = useState(false);
+    const query = useQuery();
+    const navigate = useNavigate();
+
+    const currentPage = parseInt(query.get("page")) || 1;
+    const itemsPerPage = 16;
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            setLoading(true);
+            try {
+                const data = await getPaginatedProducts(currentPage, itemsPerPage);
+                setProducts(data.products);
+                setTotalPages(data.totalPages);
+            } catch (error) {
+                console.error("Error fetching products:", error);
+            }
+            setLoading(false);
+        };
+
+        fetchProducts();
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    }, [currentPage]);
+
+    const handlePageClick = ({ selected }) => {
+        const newPage = selected + 1;
+        navigate(`?page=${newPage}`);
+    };
+
     return (
-        <div className="product-grid">
-            {products.map((product) => (
-                <ProductCard key={product.id} product={product} />
-            ))}
+        <div>
+            {loading && <div className="loading-indicator">Завантаження...</div>}
+            <div className="product-grid">
+                {products.map((product) => (
+                    <ProductCard key={product.id} product={product} />
+                ))}
+            </div>
+            <ReactPaginate
+                previousLabel={"←"}
+                nextLabel={"→"}
+                breakLabel={"..."}
+                pageCount={totalPages}
+                onPageChange={handlePageClick}
+                containerClassName={"pagination"}
+                activeClassName={"active"}
+                forcePage={currentPage - 1}
+            />
         </div>
     );
 }

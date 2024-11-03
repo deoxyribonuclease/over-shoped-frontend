@@ -6,6 +6,8 @@ import Header from "./layout/element/Header.jsx";
 import MainPage from "./components/components/MainPage.jsx";
 import ScrollToTopButton from "./components/components/ScrollToTopButton.jsx";
 
+
+
 function App() {
     const { state } = useGlobalContext();
 
@@ -16,7 +18,7 @@ function App() {
                 <div className="content">
 
                     <Routes>
-                        <Route path="/item" element={<Main />} />
+                        <Route path="/item/:id" element={<Main />} />
                         <Route path="/" element={<MainPage />} />
                     </Routes>
                 </div>

@@ -1,0 +1,144 @@
+.container-slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+margin-bottom: 40px;
+
+}
+
+.inputs-container {
+    justify-content: center;
+    display: flex;
+    height: 25px;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    height: 25px;
+    margin-right: 5px;
+}
+
+input[type="number"] {
+    width: 60px;
+    margin-right: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    -moz-appearance: textfield;
+}
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+.ok-button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #1c2c38;
+    color: white;
+    cursor: pointer;
+    height: 26px;
+}
+
+.ok-button:hover {
+    background-color: #51a6a6;
+}
+
+.slider {
+    position: relative;
+    width: 200px;
+}
+
+.slider__track,
+.slider__range,
+.slider__left-value,
+.slider__right-value {
+    position: absolute;
+}
+
+.slider__track,
+.slider__range {
+    border-radius: 3px;
+    height: 5px;
+}
+
+.slider__track {
+    background-color: #444444;
+    width: 100%;
+    z-index: 1;
+}
+
+.slider__range {
+    background-color: #dadada;
+    z-index: 2;
+}
+
+.slider__left-value,
+.slider__right-value {
+    color: #dee2e6;
+    font-size: 12px;
+    margin-top: 20px;
+}
+
+.slider__left-value {
+    left: 6px;
+}
+
+.slider__right-value {
+    right: -4px;
+}
+
+
+.thumb,
+.thumb::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.thumb {
+    pointer-events: none;
+    position: absolute;
+    height: 0;
+    width: 200px;
+    outline: none;
+}
+
+.thumb--left {
+    z-index: 3;
+}
+
+.thumb--right {
+    z-index: 4;
+}
+
+/* For Chrome browsers */
+.thumb::-webkit-slider-thumb {
+    background-color: #69ace7;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 0 1px 1px  #69ace7;;
+    cursor: pointer;
+    height: 18px;
+    width: 18px;
+    margin-top: 4px;
+    pointer-events: all;
+    position: relative;
+
+}
+
+/* For Firefox browsers */
+.thumb::-moz-range-thumb {
+    background-color: #f1f5f7;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 0 1px 1px #ced4da;
+    cursor: pointer;
+    height: 18px;
+    width: 18px;
+    margin-top: 4px;
+    pointer-events: all;
+    position: relative;
+}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ProductGrid from "./ProductGrid.jsx";
 import '../styles/filtersidebar.css';
+import MultiRangeSlider from "./MultiRangeSlider.jsx";
 
 const categories = ["Rozetka", "Comfy", "Allo"];
 const productTypes = ["Техніка", "Продовольчі товари", "Інше"];
@@ -10,8 +11,8 @@ function FilterSidebar({ isShowing, onSortChange }) {
     const [maxPrice, setMaxPrice] = useState(100);
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [selectedProductTypes, setSelectedProductTypes] = useState([]);
-    const [isCategoryCollapsed, setIsCategoryCollapsed] = useState(true); // За замовчуванням закрито
-    const [isProductTypeCollapsed, setIsProductTypeCollapsed] = useState(true); // За замовчуванням закрито
+    const [isCategoryCollapsed, setIsCategoryCollapsed] = useState(true);
+    const [isProductTypeCollapsed, setIsProductTypeCollapsed] = useState(true);
 
     const toggleCategory = (category) => {
         setSelectedCategories((prev) =>
@@ -72,11 +73,11 @@ function FilterSidebar({ isShowing, onSortChange }) {
                 </ul>
 
                 <div className="separator"></div>
-                <h3>Хз що</h3>
+                <h3>Щось</h3>
                 <div className="size-filter">
                     {sizes.map((size) => (
                         <label key={size} className="size-option">
-                            <input type="radio" name="size-choice" value={size} />
+                            <input type="radio" name="size-choice" value={size}/>
                             <span>{size}</span>
                         </label>
                     ))}
@@ -84,15 +85,12 @@ function FilterSidebar({ isShowing, onSortChange }) {
 
                 <div className="separator"></div>
                 <h3>Ціна</h3>
-                <input
-                    type="range"
-                    min="0"
-                    max="50000"
-                    value={maxPrice}
-                    className="slider"
-                    onChange={(e) => setMaxPrice(e.target.value)}
+                <MultiRangeSlider
+                    min={0}
+                    max={10000}
+                    onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
                 />
-                <span>{`Максимальна ціна: ${maxPrice} грн`}</span>
+                <div className="separator"></div>
             </aside>
 
             <div className="main-content">

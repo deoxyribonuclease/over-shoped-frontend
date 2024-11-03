@@ -19,7 +19,7 @@ const FloatingCart = ({ className }) => {
             <div className="overlay" onClick={handleClose}></div>
             <div className={`cart-content ${isClosing ? 'slide-out' : ''}`}>
                 <header>
-                    <p>Cart</p>
+                    <p>Кошик</p>
                     <button className="close-button" onClick={handleClose}>&times;</button>
                 </header>
                 <div className="divider"></div>
@@ -29,11 +29,11 @@ const FloatingCart = ({ className }) => {
                             <SingleCartItem key={cartItem.productId} {...cartItem} />
                         ))
                     ) : (
-                        <p className="empty">Your cart is empty.</p>
+                        <p className="empty">Ваш кошик порожній.</p>
                     )}
                     {state.cart.length > 0}
                 </ul>
-                <Button>Checkout</Button>
+                <Button>Оплата</Button>
             </div>
         </div>
     );

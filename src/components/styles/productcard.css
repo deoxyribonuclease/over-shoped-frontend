@@ -20,7 +20,9 @@
 .brand-name {
     font-weight: bold;
     color: #555;
+    height: 10px;
     margin-bottom: 5px;
+
 }
 
 .product-name a {

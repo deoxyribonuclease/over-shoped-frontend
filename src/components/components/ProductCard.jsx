@@ -1,42 +1,64 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import '../styles/productcard.css';
-
+import prodImg from "../../assets/itemPlaceholder.png"
 function ProductCard({ product }) {
     const navigate = useNavigate();
 
-    const handleBuyNow = () => {
-        navigate('/item');
+    const defaultProduct = {
+        id: 0,
+        shop: "Магазин не вказано",
+        name: "Назва не вказана",
+        price: 0,
+        discountPercentage: 0,
+        rating: "N/A",
+        images: prodImg,
     };
 
-    //знижка
-    const discountedPrice = product.isOnSale ? product.price * (1 - product.salePercent) : product.price;
+    const currentProduct = { ...defaultProduct, ...product };
+
+    const handleBuyNow = () => {
+        navigate(`/item/${currentProduct.id}`);
+    };
+
+
+    const discountedPrice = currentProduct.discountPercentage > 0
+        ? currentProduct.price * (1 - currentProduct.discountPercentage / 100)
+        : currentProduct.price;
 
     return (
         <div className="product-card">
             <div className="product-image">
-                <img src={product.image} alt={product.name} />
+                <img
+                    src={currentProduct.images?.[0] || prodImg}
+                    alt={currentProduct.name}
+                />
             </div>
             <div className="product-info">
-                <p className="brand-name">{product.brand}</p>
+                <p className="brand-name">{currentProduct.shop}</p>
                 <h3 className="product-name">
-                    <a href="#">{product.name}</a>
+                    <a href="#">{currentProduct.name}</a>
                 </h3>
                 <p className="product-price">
                     Ціна:
-                    {product.isOnSale ? (
+                    {currentProduct.discountPercentage > 0 ? (
                         <>
-                            <span className="original-price">{product.price} ₴</span>
+                            <span className="original-price">{currentProduct.price} ₴</span>
                             <span className="discounted-price">{discountedPrice.toFixed(2)} ₴</span>
                         </>
                     ) : (
-                        <span>{product.price} ₴</span>
+                        <span>{currentProduct.price} ₴</span>
                     )}
                 </p>
                 <p className="product-rating">
-                    Рейтинг: <span className="rating-value">{product.rating} ★</span>
+                    Рейтинг: <span className="rating-value">{currentProduct.rating} ★</span>
                 </p>
-                <button className="buy-button" onClick={handleBuyNow}>Купити зараз</button>
+                <button
+                    className="buy-button"
+                    onClick={handleBuyNow}
+                >
+                    Купити зараз
+                </button>
             </div>
         </div>
     );

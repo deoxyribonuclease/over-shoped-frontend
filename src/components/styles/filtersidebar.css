@@ -46,7 +46,7 @@
 .sidebar {
     width: 250px;
     padding: 30px;
-    background: linear-gradient(180deg, #e8f0ff, #49506b);
+    background: #59607A;
     border-right: 1px solid #ddd;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     text-align: left;
@@ -57,7 +57,7 @@
 .sidebar h3 {
     font-size: 1.8rem;
     margin-bottom: 15px;
-    color: #232f3e;
+    color: #F8F1F1;
     font-family: 'Poppins', sans-serif;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -69,7 +69,7 @@
 .size-filter,
 .price-filter {
     margin-bottom: 20px;
-    color: #3f597c;
+    color: #d7d7fa;
     font-size: 1.6rem;
     font-weight: 600;
 }
@@ -83,7 +83,7 @@
     font-size: 1.6rem;
     padding: 0;
     margin: 0;
-    color: #3f597c;;
+    color: #d0d0f8;
     text-decoration: none;
     font-weight: 600;
 }
@@ -100,7 +100,7 @@
 }
 
 .sidebar li:hover {
-    background-color: #afc4c9;
+    background-color: #51a6a6;
     cursor: pointer;
 }
 
