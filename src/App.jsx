@@ -5,6 +5,7 @@ import Footer from "./layout/element/Footer.jsx";
 import Header from "./layout/element/Header.jsx";
 import MainPage from "./components/components/MainPage.jsx";
 import ScrollToTopButton from "./components/components/ScrollToTopButton.jsx";
+import AddPage from "./layout/element/AddPage.jsx";
 
 
 
@@ -20,6 +21,7 @@ function App() {
                     <Routes>
                         <Route path="/item/:id" element={<Main />} />
                         <Route path="/" element={<MainPage />} />
+                        <Route path="/open" element={<AddPage />} />
                     </Routes>
                 </div>
                 <ScrollToTopButton />

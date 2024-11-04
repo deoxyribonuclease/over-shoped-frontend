@@ -18,6 +18,7 @@ const Navigator = () => {
     navigate('/');
   };
 
+
   return (
       <header className="navigator-wrapper">
         <nav>
@@ -31,7 +32,7 @@ const Navigator = () => {
             <ul className="nav-links">
               {navLinks.map((link, idx) => (
                   <li key={idx}>
-                    <a href="#">{link}</a>
+                    <a href="/open">{link}</a>
                   </li>
               ))}
             </ul>

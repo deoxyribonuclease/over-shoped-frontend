@@ -11,11 +11,15 @@
     transform: translateY(-5px);
 }
 
+
+
 .product-image img {
     width: 100%;
-    height: auto;
+    height: 170px;
+    object-fit: cover;
     border-radius: 8px;
 }
+
 
 .brand-name {
     font-weight: bold;

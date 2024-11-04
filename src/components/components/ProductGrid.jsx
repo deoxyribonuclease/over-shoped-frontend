@@ -47,11 +47,17 @@ function ProductGrid() {
 
     return (
         <div>
-            {loading && <div className="loading-indicator">Завантаження...</div>}
+            <div className="product-grid-container">
+            {loading && (
+                <div className="loading-grid-screen">
+                    <div className="loading-grid-spinner"></div>
+                </div>
+            )}
             <div className="product-grid">
                 {products.map((product) => (
-                    <ProductCard key={product.id} product={product} />
+                    <ProductCard key={product.id} product={product}/>
                 ))}
+            </div>
             </div>
             <ReactPaginate
                 previousLabel={"←"}
@@ -64,6 +70,7 @@ function ProductGrid() {
                 forcePage={currentPage - 1}
             />
         </div>
+
     );
 }
 

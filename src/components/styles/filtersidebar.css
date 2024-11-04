@@ -232,3 +232,52 @@
     transition: all 0.3s ease;
     font-weight: 600;
 }
+
+
+.product-grid-container {
+    position: relative;
+    min-height: 400px;
+}
+
+.loading-grid-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(243, 243, 243, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+.loading-label{
+    color: black;
+}
+
+.loading-grid-spinner {
+    border: 8px solid rgba(255, 255, 255, 0.3);
+    border-top: 8px solid #1c1e28;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-grid-screen p {
+    font-size: 1.5rem;
+    color: #ffffff;
+}
+
+

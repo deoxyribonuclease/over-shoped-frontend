@@ -16,6 +16,8 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
     );
 
 
+
+
     useEffect(() => {
         const minPercent = getPercent(minVal);
         const maxPercent = getPercent(maxValRef.current);
@@ -42,16 +44,42 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
     }, [minVal, maxVal, onChange]);
 
     const handleMinInputChange = (event) => {
-        const value = Math.min(Number(event.target.value), maxVal - 1);
-        setMinVal(value);
-        minValRef.current = value;
+        const inputValue = Number(event.target.value);
+
+        if (inputValue < min) {
+            setMinVal(min);
+            minValRef.current = min;
+        } else if (inputValue >= max) {
+            setMinVal(max - 1);
+            minValRef.current = max - 1;
+        } else if (inputValue >= maxVal) {
+            setMinVal(maxVal - 1);
+            minValRef.current = maxVal - 1;
+        } else {
+            setMinVal(inputValue);
+            minValRef.current = inputValue;
+        }
     };
 
     const handleMaxInputChange = (event) => {
-        const value = Math.max(Number(event.target.value), minVal + 1);
-        setMaxVal(value);
-        maxValRef.current = value;
+        const inputValue = Number(event.target.value);
+
+        if (inputValue > max) {
+            setMaxVal(max);
+            maxValRef.current = max;
+        } else if (inputValue <= min) {
+            setMaxVal(min + 1);
+            maxValRef.current = min + 1;
+        } else if (inputValue <= minVal) {
+            setMaxVal(minVal + 1);
+            maxValRef.current = minVal + 1;
+        } else {
+            setMaxVal(inputValue);
+            maxValRef.current = inputValue;
+        }
     };
+
+
 
     return (
         <div>

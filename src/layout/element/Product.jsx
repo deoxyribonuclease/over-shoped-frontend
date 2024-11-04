@@ -13,6 +13,8 @@ const Product = () => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
+
+
     useEffect(() => {
         const fetchProduct = async () => {
             setLoading(true);
@@ -29,7 +31,12 @@ const Product = () => {
     }, [id]);
 
     if (loading) {
-        return <div>Загрузка...</div>;
+        return (
+            <div className="loading-screen">
+                <div className="loading-spinner"></div>
+                <p>Загрузка...</p>
+            </div>
+        );
     }
 
     if (error) {
@@ -37,11 +44,12 @@ const Product = () => {
     }
 
     if (!product) {
-        return <div>Продукту не занйдено</div>;
+        return <div>Продукту не знайдено</div>;
     }
 
     return (
         <div className="product-wrapper">
+
             <ImageCarousel
                 productImages={product.images}
                 productThumbnails={product.images}

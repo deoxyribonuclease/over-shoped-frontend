@@ -73,7 +73,22 @@ button {
 }
 
 /* кастом скроллбар */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #232f3e #d6dbec;
+::-webkit-scrollbar {
+  width: 8px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #d6dbec;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #232f3e;
+  border-radius: 10px;
+  border: 1px solid #6d7791;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #919191;
 }
