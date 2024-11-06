@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Logo, Menu, Cart } from "../../icons/index.jsx";
 import { avatar } from "../../assets/imagedata.js";
 import FloatingCart from "../../components/components/FloatingCart.jsx";
@@ -10,7 +10,9 @@ import List from "../../icons/List.jsx";
 
 const navLinks = ["Help", "me", "please"];
 
-const Navigator = () => {
+import Modal from "../../components/components/Modal.jsx";
+
+const Navigator = ({ openModal }) => {
   const { showSidebar, showCart, hideCart, state } = useGlobalContext();
   const navigate = useNavigate();
 
@@ -57,7 +59,7 @@ const Navigator = () => {
               <Cart/>
               {state.totalCartSize > 0 && <span>{state.totalCartSize}</span>}
             </button>
-            <button className="avatar-btn">
+            <button className="avatar-btn" onClick = {openModal}>
               <img src={avatar} alt="avatar"/>
             </button>
             <FloatingCart className={state.showingCart ? "active" : ""}/>
