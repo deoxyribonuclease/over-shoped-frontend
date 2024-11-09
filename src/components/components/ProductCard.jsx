@@ -28,7 +28,7 @@ function ProductCard({ product }) {
 
     return (
         <div className="product-card">
-            <div className="product-image">
+            <div onClick={handleBuyNow} className="product-image">
                 <img
                     src={currentProduct.images?.[0] || prodImg}
                     alt={currentProduct.name}
@@ -36,8 +36,8 @@ function ProductCard({ product }) {
             </div>
             <div className="product-info">
                 <p className="brand-name">{currentProduct.shop}</p>
-                <h3 className="product-name">
-                    <a href="#">{currentProduct.name}</a>
+                <h3 onClick={handleBuyNow} className="product-name">
+                    <a>{currentProduct.name}</a>
                 </h3>
                 <p className="product-price">
                     Ціна:

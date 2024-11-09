@@ -1,5 +1,10 @@
 import {useState} from "react";
 import '../styles/UnificatedForm.css'
+import EmailIcon from '../../assets/email.png'
+import PassIcon from '../../assets/password.png'
+import ShowIcon from '../../assets/icon-show-password-24.png'
+import HideIcon from '../../assets/icon-hide-password-30.png'
+import GoogleIcon from '../../assets/google_logo.png'
 import {  validateEmail, validatePasswordForSignUp, validateRepeatPassword } from "../../utils/ValidationService";
 
 const ResetPassword = ({onSwitchForm}) => {
@@ -103,7 +108,7 @@ return(
         <>
             <div className = "input-fields">
                 <div className = "input" style={{ border: emailError ? '1px solid red' : '1px solid #ccc' }}>
-                    <img src = "./src/assets/email.png"/>
+                    <img src ={EmailIcon}/>
                     <input
                     type ="email"
                     placeholder = "E-mail"
@@ -121,7 +126,7 @@ return(
             <>
          <div className = "input-fields">
                         <div className="input" style={{ border: passwordError ? '1px solid red' : '1px solid #ccc' }}>
-                                        <img src = "./src/assets/password.png"/>
+                                        <img src = {PassIcon}/>
                                         <input
                                             type = {showPassword ? 'text' : 'password'}
                                             placeholder = "Пароль"
@@ -129,7 +134,7 @@ return(
                                             onChange={handlePasswordChange}
                                             />
                                            <img className = "button-hide-show"
-                                                src = {showPassword ? "./src/assets/icon-show-password-24.png" : "./src/assets/icon-hide-password-30.png"}
+                                                src = {showPassword ? ShowIcon : HideIcon}
                                                 alt={showPassword ? "Hide Password" : "Show Password"}
                                                 onClick={togglePasswordVisibility}
                                            />
@@ -137,7 +142,7 @@ return(
                                     {passwordError && <p className="error-message">{passwordError}</p>}
 
                                     <div className="input" style={{ border: repeatPasswordError ? '1px solid red' : '1px solid #ccc' }}>
-                                        <img src = "./src/assets/password.png"/>
+                                        <img src = {PassIcon}/>
                                         <input
                                         type = {showRepeatPassword ? 'text' : 'password'}
                                         placeholder = "Повторіть пароль"
@@ -145,7 +150,7 @@ return(
                                         onChange={handleRepeatPasswordChange}
                                         />
                                         <img className = "button-hide-show"
-                                             src = {showRepeatPassword ? "./src/assets/icon-show-password-24.png" : "./src/assets/icon-hide-password-30.png"}
+                                             src = {showRepeatPassword ? ShowIcon : HideIcon}
                                              alt={showRepeatPassword ? "Hide Password" : "Show Password"}
                                              onClick={toggleRepeatPasswordVisibility}
                                         />
@@ -160,7 +165,7 @@ return(
         <h2>Увійти за допомогою</h2>
 
             <button className="google-button">
-                <img src = "./src/assets/google_logo.png"/>
+                <img src ={GoogleIcon}/>
                  Google
             </button>
        </div>

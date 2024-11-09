@@ -130,8 +130,8 @@ nav {
 }
 
 .avatar-btn {
-    height: 2.4rem;
-    width: 2.4rem;
+    height: 2.1rem;
+    width: 2.1rem;
     border-radius: 50%;
 }
 
@@ -154,8 +154,8 @@ nav {
     }
 
     .avatar-btn {
-        height: 3.5rem;
-        width: 3.5rem;
+        height: 3.1rem;
+        width: 3.1rem;
         border-radius: 50%;
         overflow: hidden;
     }
@@ -179,8 +179,8 @@ nav {
     }
 
     .avatar-btn {
-        height: 5rem;
-        width: 5rem;
+        height: 4rem;
+        width: 4rem;
         border-radius: 50%;
         overflow: hidden;
     }
@@ -189,3 +189,8 @@ nav {
         width: 100%;
     }
 }
+
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+}
+

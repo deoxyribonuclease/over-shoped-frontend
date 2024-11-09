@@ -1,29 +1,32 @@
-/* footer.css */
 .footer {
     padding: 1rem;
     background-color: #232f3e;
     color: #fff;
-    text-align: center;
-}
-
-.footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.footer-nav {
-    margin-bottom: 1.0rem;
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 35rem; /* Відступи для зближення лівої та правої частини */
+}
+
+.footer-left,
+.footer-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .footer-nav ul {
     list-style: none;
-    padding: 0;
     display: flex;
-    justify-content: center;
-    gap: 2rem;
+    gap: 1.5rem; /* Зменшено для зближення елементів */
 }
 
 .footer-nav li a {
@@ -37,12 +40,13 @@
 }
 
 .social-media {
-    margin-bottom: 1rem;
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem; /* Зменшено для зближення */
 }
 
 .social-media a {
     color: #fff;
-    margin: 0 0.5rem;
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -51,11 +55,48 @@
     color: #79e1e1;
 }
 
-.copyright {
-    font-size: 0.8rem;
+.footer-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
+.language-selector {
+    display: flex;
+    gap: 8px;
+}
 
-.footer-content > * {
-    margin: 0.5rem 0;
+.language-selector button {
+    background-color: #2a3d4f;
+    color: #fff;
+    border: 1px solid #3c5d5d;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.language-selector button:hover {
+    background-color: #51a6a6;
+}
+
+.footer-image img {
+    max-width: 100px;
+    height: auto;
+}
+
+/* Лінія для розділення copyright */
+.footer-divider {
+    width: 100%;
+    border: 0;
+    height: 1px;
+    background-color: #284f4f;
+    margin: 1rem 0;
+}
+
+.copyright {
+    font-size: 0.8rem;
+    text-align: center;
+    width: 100%;
+    margin: 0;
 }

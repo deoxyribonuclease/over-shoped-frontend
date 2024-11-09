@@ -78,7 +78,7 @@
 }
 
 
-h2 {
+.form-container.h2 {
     text-align: center; /* Центрування тексту */
     margin-top:10px;
     margin-bottom:10px;

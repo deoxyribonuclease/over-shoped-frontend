@@ -28,9 +28,9 @@
 .cart-content {
     background-color: var(--white);
     border-radius: 1rem;
-    width: 56rem;
+    width: 66rem;
     height: auto;
-    max-height: 50%;
+    max-height: 80%;
     padding: 2.4rem;
     box-shadow: 0 2rem 5rem -2rem var(--black);
     z-index: 2;
@@ -38,7 +38,19 @@
     flex-direction: column;
     position: relative;
     opacity: 0;
+}
 
+.cart-items {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 18.8rem;
+    gap: 2.4rem;
+    overflow-y: auto;
+    max-height: 100%;
+    margin-left: 1rem;
 }
 
 .floating-cart-wrapper.active .cart-content {

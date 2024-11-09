@@ -1,8 +1,17 @@
 import {useState} from "react";
 import '../styles/UnificatedForm.css';
-import { validateName, validateEmail, validatePasswordForSignUp, validateRepeatPassword } from "../../utils/ValidationService";
+import PersIcon from '../../assets/person.png'
+import EmailIcon from '../../assets/email.png'
+import PassIcon from '../../assets/password.png'
+import ShowIcon from '../../assets/icon-show-password-24.png'
+import HideIcon from '../../assets/icon-hide-password-30.png'
+import GoogleIcon from '../../assets/google_logo.png'
 
-const SignUp = ({onSwitchForm}) => {
+import { validateName, validateEmail, validatePasswordForSignUp, validateRepeatPassword } from "../../utils/ValidationService";
+import {registerUser} from "../../api/userApi.jsx";
+
+
+const SignUp = ({onSwitchForm, triggerAlert}) => {
 //змінні для валідації
 const [name,setName] = useState('');
 const [nameError, setNameError] = useState('');
@@ -12,6 +21,9 @@ const [password, setPassword] = useState('');
 const [passwordError, setPasswordError] = useState('');
 const [repeatPassword, setRepeatPassword] = useState('');
 const [repeatPasswordError, setRepeatPasswordError] = useState('');
+
+
+
 //показати / сховати пароль
 const [showPassword,setShowPassword] = useState(false);
 const [showRepeatPassword,setShowRepeatPassword] = useState(false);
@@ -41,7 +53,7 @@ const handleRepeatPasswordChange = (event) => {
 }
 //реалізація валідації "покрокової" код тупий до всрачки
  const validateFields = () => {
-     // Validate each field in order, and show only the first encountered error
+
      const nameErr = validateName(name);
      if (nameErr) {
          setNameError(nameErr);
@@ -78,7 +90,6 @@ const handleRepeatPasswordChange = (event) => {
          return false;
      }
 
-     // If no errors, clear all error messages
      setNameError('');
      setEmailError('');
      setPasswordError('');
@@ -86,22 +97,32 @@ const handleRepeatPasswordChange = (event) => {
      return true;
  };
 
-//подія кнопки log in
-const handleSubmit = (event) => {
-    event.preventDefault();
-    if(validateFields()){
-        console.log('Form submitted successfully!');
-    }
-    else{
-    console.log('Form failed to success!');
-    }
-}
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        if (validateFields()) {
+            try {
+                const data = await registerUser(email, password);
+                if (data.message.message) {
+                    triggerAlert('Користувач успішно зареєстрований!', 'success');
+                    onSwitchForm('login');
+                } else if (data.message.error) {
+                    triggerAlert('Користувач з таким email вже існує!', 'error');
+                }
+            } catch (error) {
+                triggerAlert('Щось пішло не так...', 'error');
+            }
+        } else {
+            console.log('Form failed to validate');
+        }
+    };
+
+
 
 return(
     <div className = "form-container">
         <div className = "input-fields">
             <div className = "input" style={{ border: nameError ? '1px solid red' : '1px solid #ccc' }}>
-                <img src = "./src/assets/person.png" alt=""/>
+                <img src = {PersIcon} alt=""/>
                 <input
                 type = "text"
                 placeholder = "Введіть ім'я"
@@ -112,7 +133,7 @@ return(
             {nameError && <p className = "error-message">{nameError}</p>}
 
             <div className="input" style={{ border: emailError ? '1px solid red' : '1px solid #ccc' }}>
-                <img src = "./src/assets/email.png"/>
+                <img src = {EmailIcon}/>
                 <input
                  type = "email"
                  placeholder = "E-mail"
@@ -123,7 +144,7 @@ return(
             {emailError && <p className = "error-message">{emailError}</p>}
 
             <div className="input" style={{ border: passwordError ? '1px solid red' : '1px solid #ccc' }}>
-                <img src = "./src/assets/password.png"/>
+                <img src ={PassIcon}/>
                 <input
                     type = {showPassword ? 'text' : 'password'}
                     placeholder = "Пароль"
@@ -131,7 +152,7 @@ return(
                     onChange={handlePasswordChange}
                     />
                 <img className = "button-hide-show"
-                    src = {showPassword ? "./src/assets/icon-show-password-24.png" : "./src/assets/icon-hide-password-30.png"}
+                    src = {showPassword ? ShowIcon : HideIcon}
                     alt={showPassword ? "Hide Password" : "Show Password"}
                     onClick={togglePasswordVisibility}
                 />
@@ -139,7 +160,7 @@ return(
             {passwordError && <p className="error-message">{passwordError}</p>}
 
             <div className="input" style={{ border: repeatPasswordError ? '1px solid red' : '1px solid #ccc' }}>
-                <img src = "./src/assets/password.png"/>
+                <img src ={PassIcon}/>
                 <input
                 type = {showRepeatPassword ? 'text' : 'password'}
                 placeholder = "Повторіть пароль"
@@ -147,7 +168,7 @@ return(
                 onChange={handleRepeatPasswordChange}
                 />
                 <img className = "button-hide-show"
-                     src = {showRepeatPassword ? "./src/assets/icon-show-password-24.png" : "./src/assets/icon-hide-password-30.png"}
+                     src = {showRepeatPassword ? ShowIcon : HideIcon}
                      alt={showRepeatPassword ? "Hide Password" : "Show Password"}
                      onClick={toggleRepeatPasswordVisibility}
                 />
@@ -161,10 +182,13 @@ return(
     </div>
     <h2>Увійти за допомогою</h2>
      <button className="google-button">
-                    <img src = "./src/assets/google_logo.png"/>
+                    <img src = {GoogleIcon}/>
                      Google
                 </button>
+
+
     </div>
+
      );
 }
 export default SignUp;

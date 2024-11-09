@@ -44,9 +44,12 @@
 
 
 .sidebar {
+    background-color: #59607A;
+
+
     width: 250px;
     padding: 30px;
-    background: #59607A;
+
     border-right: 1px solid #ddd;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     text-align: left;
@@ -57,6 +60,7 @@
 .sidebar h3 {
     font-size: 1.8rem;
     margin-bottom: 15px;
+    -webkit-text-stroke: 0.02rem #1c2c38;
     color: #F8F1F1;
     font-family: 'Poppins', sans-serif;
     text-transform: uppercase;
@@ -69,13 +73,14 @@
 .size-filter,
 .price-filter {
     margin-bottom: 20px;
-    color: #d7d7fa;
+    color: #ffffff;
     font-size: 1.6rem;
     font-weight: 600;
 }
 
 /* Список фільтрів */
 .sidebar ul {
+    -webkit-text-stroke: 0.02rem #1c2c38;
     max-height: 0;
     transition: max-height 0.3s ease-out;
     overflow: hidden;
@@ -83,7 +88,7 @@
     font-size: 1.6rem;
     padding: 0;
     margin: 0;
-    color: #d0d0f8;
+    color: #ffffff;
     text-decoration: none;
     font-weight: 600;
 }
@@ -100,7 +105,7 @@
 }
 
 .sidebar li:hover {
-    background-color: #51a6a6;
+    background-color: #484e79;
     cursor: pointer;
 }
 
@@ -278,6 +283,45 @@
 .loading-grid-screen p {
     font-size: 1.5rem;
     color: #ffffff;
+}
+
+
+.no-products-placeholder-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 60vh;
+}
+
+.no-products-placeholder {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    font-size: 1.5rem;
+    color: #2b343b;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.no-products-placeholder img {
+    max-width: 80%;
+    height: auto;
+    margin-top: 20px;
 }
 
 

@@ -14,7 +14,30 @@
             line-height: 2rem;
         }
     }
+    .cart {
 
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+    }
+
+    .in-cart {
+        background-color: #ffffff;
+        border: 2px solid #1c2c38;
+        color: #1c2c38;
+         svg path {
+            fill: #1c2c38;
+        }
+    }
+
+    .cart:hover {
+        opacity: 0.6;
+    }
+
+    .cart:hover svg use {
+        fill: red;
+    }
     @media only screen and (min-width: 1000px) {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
@@ -31,3 +54,5 @@
         }
     }
 }
+
+

@@ -5,14 +5,13 @@ import MultiRangeSlider from "./MultiRangeSlider.jsx";
 
 const categories = ["Rozetka", "Comfy", "Allo"];
 const productTypes = ["Техніка", "Продовольчі товари", "Інше"];
-const sizes = [34, 36, 38, 40, 42, 44];
 
 function FilterSidebar({ isShowing, onSortChange }) {
-    const [maxPrice, setMaxPrice] = useState(100);
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [selectedProductTypes, setSelectedProductTypes] = useState([]);
-    const [isCategoryCollapsed, setIsCategoryCollapsed] = useState(true);
-    const [isProductTypeCollapsed, setIsProductTypeCollapsed] = useState(true);
+    const [isCategoryCollapsed, setIsCategoryCollapsed] = useState(false);
+    const [isProductTypeCollapsed, setIsProductTypeCollapsed] = useState(false);
+    const [isPriceCollapsed, setIsPriceCollapsed] = useState(false);
 
     const toggleCategory = (category) => {
         setSelectedCategories((prev) =>
@@ -30,13 +29,17 @@ function FilterSidebar({ isShowing, onSortChange }) {
         );
     };
 
+
+
     return (
         <div className="container">
             <aside className={`sidebar ${isShowing ? "show" : ""}`}>
-                <h2 onClick={() => setIsCategoryCollapsed(!isCategoryCollapsed)}>
+                <h3 onClick={() => setIsCategoryCollapsed(!isCategoryCollapsed)}>
                     Магазини {isCategoryCollapsed ? "▲" : "▼"}
-                </h2>
-                <ul className={isCategoryCollapsed ? "" : "expanded"}>
+                </h3>
+                <ul style={{ maxHeight: isCategoryCollapsed ? 0 : 90,
+                    zIndex: 5,
+                    position: 'relative' }}>
                     {categories.map((category, index) => (
                         <li key={index}>
                             <label className="custom-checkbox">
@@ -56,7 +59,9 @@ function FilterSidebar({ isShowing, onSortChange }) {
                 <h3 onClick={() => setIsProductTypeCollapsed(!isProductTypeCollapsed)}>
                     Тип Товару {isProductTypeCollapsed ? "▲" : "▼"}
                 </h3>
-                <ul className={isProductTypeCollapsed ? "" : "expanded"}>
+                <ul style={{ maxHeight: isProductTypeCollapsed ? 0 : 110,
+                    zIndex: 5,
+                    position: 'relative' }}>
                     {productTypes.map((productType, index) => (
                         <li key={index}>
                             <label className="custom-checkbox">
@@ -72,31 +77,28 @@ function FilterSidebar({ isShowing, onSortChange }) {
                     ))}
                 </ul>
 
-                <div className="separator"></div>
-                <h3>Щось</h3>
-                <div className="size-filter">
-                    {sizes.map((size) => (
-                        <label key={size} className="size-option">
-                            <input type="radio" name="size-choice" value={size}/>
-                            <span>{size}</span>
-                        </label>
-                    ))}
-                </div>
+
 
                 <div className="separator"></div>
-                <h3>Ціна</h3>
-                <MultiRangeSlider
-                    min={0}
-                    max={10000}
-                    onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
-                />
+                <h3 onClick={() => setIsPriceCollapsed(!isPriceCollapsed)}
+                >Ціна {isPriceCollapsed ? "▲" : "▼"}</h3>
+                <ul style={{ maxHeight: isPriceCollapsed ? 0 : 60,
+                    zIndex: 5,
+                    position: 'relative'
+                }}>
+                    <MultiRangeSlider
+                        min={0}
+                        max={10000}
+                        onChange={({min, max}) => console.log(`min = ${min}, max = ${max}`)}
+                    />
+                </ul>
                 <div className="separator"></div>
             </aside>
 
             <div className="main-content">
                 <div className="sorting">
                     <label>
-                        Сортувати за:
+                    Сортувати за:
                         <select className="selector" onChange={onSortChange}>
                             <option value="downtoup">Від дешевих до дорогих</option>
                             <option value="uptodown">Від дорогих до дешеевих</option>

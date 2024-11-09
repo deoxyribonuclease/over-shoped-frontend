@@ -4,6 +4,7 @@ import ProductCard from "./ProductCard.jsx";
 import ReactPaginate from "react-paginate";
 import '../styles/Pagination.css';
 import { getPaginatedProducts } from "../../api/ItemsApi.jsx";
+import Empty from "../../assets/empty.jpg";
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -45,20 +46,34 @@ function ProductGrid() {
         navigate(`?page=${newPage}`);
     };
 
+    const renderPlaceholder = () => {
+        return (
+            <div className="no-products-placeholder-container">
+                <div className="no-products-placeholder">
+                    <p>На даний момент немає доступних продуктів. Спробуйте пізніше.</p>
+                    <img src={Empty} alt="empty"></img>
+                </div>
+            </div>
+        );
+    };
+
     return (
         <div>
-            <div className="product-grid-container">
-            {loading && (
-                <div className="loading-grid-screen">
-                    <div className="loading-grid-spinner"></div>
+        <div className="product-grid-container">
+                {loading && (
+                    <div className="loading-grid-screen">
+                        <div className="loading-grid-spinner"></div>
+                    </div>
+                )}
+                <div className="product-grid">
+                    {products.length === 0 && !loading ? renderPlaceholder() : (
+                        products.map((product) => (
+                            <ProductCard key={product.id} product={product}/>
+                        ))
+                    )}
                 </div>
-            )}
-            <div className="product-grid">
-                {products.map((product) => (
-                    <ProductCard key={product.id} product={product}/>
-                ))}
             </div>
-            </div>
+            {products.length === 0 && !loading ? "" : (
             <ReactPaginate
                 previousLabel={"←"}
                 nextLabel={"→"}
@@ -69,8 +84,8 @@ function ProductGrid() {
                 activeClassName={"active"}
                 forcePage={currentPage - 1}
             />
+            )}
         </div>
-
     );
 }
 

@@ -1,12 +1,12 @@
 export const validateName = (name) => {
     if(name.trim().length === 0){
-        return 'Це поле пусте!';
+        return 'Поле імені не може бути пустим';
     }
     return '';
 }
 export const validateEmail = (email) => {
        if(email.trim().length === 0){
-        return 'Це поле пусте!';
+        return 'Поле пошти не може бути пустим.';
        }
        if (email.includes(" ")) {
            return "Пошта не може мати пробілів.";
@@ -22,7 +22,7 @@ export const validateEmail = (email) => {
 
 export const validatePasswordForSignUp = (password) => {
     if(password.trim().length === 0){
-        return 'Це поле пусте!';
+        return 'Це поле не може бути пустим!';
     }
     if (password.length < 6) {
         return 'Пароль має бути як мінімум шість символів!';
@@ -31,17 +31,14 @@ export const validatePasswordForSignUp = (password) => {
 };
 export const validatePasswordForLogIn = (password) => {
     if(password.trim().length === 0){
-        return 'Це поле пусте!';
-    }
-    if(password !== 'password'){
-        return 'Пароль не правильний!'
+        return 'Це поле не може бути пустим!';
     }
     return '';
 };
 
 export const validateRepeatPassword = (password, repeatPassword) => {
     if(repeatPassword.trim().length === 0){
-        return 'Це поле пусте!';
+        return 'Це поле не може бути пустим!';
     }
     if (password !== repeatPassword) {
         return 'Паролі не співпадають!';

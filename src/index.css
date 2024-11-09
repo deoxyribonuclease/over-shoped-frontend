@@ -17,7 +17,7 @@ html {
 :root {
   --black: #000000;
   --orange: #1c1c1c;
-  --pale-orange: #fff5e6;
+  --pale-orange: #e6e9ff;
   --very-dark-blue: #1c1c1c;
   --dark-grayish-blue: #737373;
   --grayish-blue: #bfc9d3;
@@ -31,6 +31,7 @@ html, body {
   height: 100%;
   margin: 0;
   font-family: "Kumbh Sans", sans-serif;
+
 }
 
 body {
@@ -38,6 +39,8 @@ body {
   margin: 0;
   display: grid;
   grid-template-rows: auto 1fr auto;
+  top: 0 !important;
+  position: static !important;
 }
 
 
@@ -91,4 +94,45 @@ button {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #919191;
+}
+
+
+.skiptranslate {
+  display: none !important;
+}
+
+.goog-text-highlight,
+font > font {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  box-sizing: inherit;
+}
+
+html {
+  height: auto !important;
+}
+
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf.VIpgJd-ZVi9od-aZ2wEe-wOHMyf-ti6hGc {
+  display: none;
+}
+
+.language {
+  position: fixed;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+}
+
+.language__img {
+  margin: 2px;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.language__img:hover,
+.language__img_active {
+  opacity: 1;
 }

@@ -1,20 +1,25 @@
 import {useState} from "react";
 import '../styles/UnificatedForm.css'
+import EmailIcon from '../../assets/email.png'
+import PassIcon from '../../assets/password.png'
+import ShowIcon from '../../assets/icon-show-password-24.png'
+import HideIcon from '../../assets/icon-hide-password-30.png'
+import GoogleIcon from '../../assets/google_logo.png'
 import {  validateEmail, validatePasswordForLogIn } from "../../utils/ValidationService";
+import {loginUser, registerUser} from "../../api/userApi.jsx";
+import {useNavigate} from "react-router-dom";
+import Cookies from 'js-cookie'; // Import js-cookie
 
-const LogIn = ({onSwitchForm}) => {
-//TODO
-// 1) кнопки "ока" для полів password
-// 2) реалізувати форму resetpassword 2
-// 3) перекласти все на українську мову
-// 4) перенести код до основного бренча
+
+const LogIn = ({onSwitchForm, triggerAlert}) => {
+
 const [email,setEmail] = useState('');
 const [emailError, setEmailError] = useState('');
 const [password, setPassword] = useState('');
 const [passwordError, setPasswordError] = useState('');
 
 const [showPassword,setShowPassword] = useState(false);
-
+    const navigate = useNavigate();
 const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
 }
@@ -52,23 +57,35 @@ const validateFields = () => {
           return true;
 }
 
-const handleSubmit = (event) => {
+const handleSubmit = async (event) => {
     event.preventDefault();
-    if(validateFields()){
-        console.log('Form submitted successfully!');
-    }
-    else{
-    console.log('Form failed to success!');
+    if (validateFields()) {
+        try {
+            const data = await loginUser(email, password);
+            if (data.token) {
+                Cookies.set('authToken', data.token, { expires: 7 });
+                navigate('/');
+                location.reload();
+            } else if (data.error) {
+                if(data.error === "Invalid credentials")
+                triggerAlert('Такого користувача не існує!', 'error');
+                else
+                    triggerAlert('Неправильинй пароль!', 'error');
+            }
+        } catch (error) {
+            triggerAlert('Щось пішло не так...', 'error');
+        }
+    } else {
+        console.log('Form failed to validate');
     }
 }
-
 
 return(
     <div className = "form-container">
 
         <div className = "input-fields">
             <div className="input" style={{ border: emailError ? '1px solid red' : '1px solid #ccc' }}>
-                <img src = "./src/assets/email.png" alt = ""/>
+                <img src ={EmailIcon} alt = ""/>
                 <input
                 type = "email"
                 placeholder = "E-mail"
@@ -78,14 +95,14 @@ return(
             </div>
              {emailError && <p className = "error-message">{emailError}</p>}
             <div className ="input" style={{ border: passwordError ? '1px solid red' : '1px solid #ccc' }}>
-                <img src ="./src/assets/password.png"/>
+                <img src ={PassIcon}/>
                 <input
                 type = {showPassword ? 'text' : 'password'}
                 placeholder = "Пароль"
                 value={password}
                 onChange={handlePasswordChange}/>
                 <img className = "button-hide-show"
-                   src = {showPassword ? "./src/assets/icon-show-password-24.png" : "./src/assets/icon-hide-password-30.png"}
+                   src = {showPassword ? ShowIcon : HideIcon}
                    alt={showPassword ? "Hide Password" : "Show Password"}
                    onClick={togglePasswordVisibility}
 
@@ -102,7 +119,7 @@ return(
         </div>
         <h2>Увійдіть за допомогою</h2>
          <button className="google-button">
-                <img src = "./src/assets/google_logo.png"/>
+                <img src ={GoogleIcon}/>
                 Google
          </button>
     </div>

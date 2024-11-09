@@ -12,10 +12,9 @@ const ProductInfo = (x) => {
           <p className="product-description">{x.productDescription}</p>
           <div className="pricing">
             <p className="price">
-              ₴
               {x.isOnSale
                   ? (x.productPrice * (1 - x.salePercent)).toFixed(2)
-                  : x.productPrice.toFixed(2)}
+                  : x.productPrice.toFixed(2)}₴
             </p>
 
             {x.isOnSale && (
@@ -26,7 +25,7 @@ const ProductInfo = (x) => {
             )}
           </div>
         </div>
-        <ProductControls productId={x.productId} />
+        <ProductControls {...x} />
       </div>
   );
 };
