@@ -1,0 +1,287 @@
+.reviews-section {
+    padding: 3rem;
+    width: 100%;
+    margin: 0;
+    flex-direction: column;
+    align-items: stretch;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    display: flex;
+
+    .review-item.highlighted {
+        box-shadow: 0 0 10px 5px rgba(0, 119, 255, 0.5);
+        background-color: #f4f7f4;
+        margin-bottom: 20px;
+        transition: box-shadow 0.3s ease-in-out;
+    }
+    .custom-star {
+        width: 50px;
+        height: 50px;
+    }
+
+    p {
+        padding: 15px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    h3 {
+        font-size: 2.4rem;
+        font-weight: 700;
+        margin-bottom: 1.6rem;
+        color: var(--dark-grayish-blue);
+    }
+
+    .review-item {
+        margin-bottom: 2.4rem;
+        border-radius: 8px;
+        background-color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.5s forwards;
+
+
+        .review-actions button:nth-child(1) {
+            background-color: #1c2c38;
+            padding: 0.5rem;
+            border-radius: 4px;
+            color: white;
+            margin-right: 5px;
+        }
+
+        .review-actions button:nth-child(1):hover {
+            background-color: #51a6a6;
+        }
+
+        .review-actions{
+            text-align: right;
+            margin-bottom: 1rem;
+            margin-right: 1rem;
+        }
+
+        .review-actions button:nth-child(2) {
+            background-color: #502631;
+            border-radius: 4px;
+            padding: 0.5rem;
+            color: white;
+        }
+
+        .review-actions button:nth-child(2):hover {
+            background-color: #51a6a6;
+        }
+
+
+        .delete-confirmation {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background-color: #fcf7f7;
+            border: 1px solid #1c2c38;
+            padding: 1.2rem;
+            margin: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .delete-confirmation span {
+            font-size: 1.6rem;
+            color: #1c2c38;
+            text-align: center;
+        }
+
+        .delete-confirmation button {
+            padding: 1rem 1.6rem;
+            font-size: 1.4rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+
+        .delete-confirmation button:last-child {
+            background-color: #1c2c38;
+            color: white;
+        }
+
+        .delete-confirmation button:last-child:hover {
+            background-color: #51a6a6;
+        }
+
+        .review-date{
+            font-size: 1.2rem;
+            color: #afabab;
+        }
+
+        p {
+            font-size: 1.8rem;
+            line-height: 2.6rem;
+            color: var(--dark-grayish-blue);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .rating-stars {
+            margin-bottom: 1.2rem;
+            font-size: 2rem;
+        }
+    }
+}
+
+
+.text-textarea {
+    width: 100%;
+    padding: 1.6rem;
+    font-size: 1.8rem;
+    border: 1px solid var(--light-grayish-blue);
+    border-radius: 6px;
+    margin-bottom: 1.6rem;
+    color: var(--dark-grayish-blue);
+    background-color: var(--pale-orange);
+    line-height: 1.6rem;
+    resize: none;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.cust-button {
+    padding: 1.6rem 2.4rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: white;
+    background-color: #1c2c38;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+    &:hover {
+        background-color: #51a6a6;
+    }
+
+
+}
+
+.cancel-edit-button{
+    padding: 1.6rem 2.4rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: white;
+    background-color: #381c26;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: #51a6a6;
+    }
+}
+
+.review-form {
+    margin-top: 2.4rem;
+}
+
+.empty-review-placeholder{
+    font-size: 1.8rem;
+    line-height: 2.6rem;
+    margin-bottom: 1rem;
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    background-color: #1c2c38;
+    padding: 1rem;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+
+    span{
+        font-size: 1.8rem;
+        line-height: 2.6rem;
+        color: #d9d5d2;
+    }
+
+    .user-name {
+        font-size: 1.8rem;
+        line-height: 2.6rem;
+        margin-left: 10px;
+        color: #d9d5d2;
+        flex-grow: 1;
+    }
+
+    .rating-stars {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.5rem;
+        margin-right: 300px;
+    }
+
+    .custom-star-all {
+        width: 35px;
+        height: 35px;
+    }
+
+    .user-avatar {
+        width: 45px;
+        height: 45px;
+        outline: 1px solid white;
+        border-radius: 50%;
+    }
+}
+.rating-and-character-count {
+    display: flex;
+    align-items: center;
+}
+
+.character-count{
+    font-size: 1.8rem;
+    line-height: 2.6rem;
+    margin-left: 20px;
+}
+
+.reviews-section {
+    overflow: hidden;
+}
+
+.review-item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s forwards;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.load-more-button {
+    padding: 1rem 2rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: white;
+    background-color: #1c2c38;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 2rem;
+    display: block;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.load-more-button:hover {
+    background-color: #51a6a6;
+}
