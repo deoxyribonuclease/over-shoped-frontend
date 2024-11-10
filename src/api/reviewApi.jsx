@@ -43,16 +43,7 @@ export const addReview = async (userId, productId, text, rating) => {
 
 export const getReviewsByProductId = async (productId) => {
     try {
-        const token = getAuthTokenFromCookies();
-        if (!token) {
-            throw new Error("Authorization token not found in cookies");
-        }
-
-        const response = await axios.get(`${API_BASE_URL}/reviews/product/${productId}`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
+        const response = await axios.get(`${API_BASE_URL}/reviews/product/${productId}`);
 
         console.log(response);
         return response.data;
@@ -83,7 +74,7 @@ export const editReview = async (userId, productId, text, rating) => {
         );
 
         console.log(response);
-        return response.data; // Повертаємо відредагований відгук
+        return response.data;
     } catch (error) {
         console.error("Error editing review:", error);
         throw error;

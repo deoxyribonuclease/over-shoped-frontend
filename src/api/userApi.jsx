@@ -37,15 +37,7 @@ export const loginUser = async (email, password) => {
 
 export const getUserById = async (userId) => {
     try {
-        const token = getAuthTokenFromCookies();
-        if (!token) {
-            throw new Error("Authorization token not found in cookies");
-        }
-        const response = await axios.get(`${API_BASE_URL}/users/${userId}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
+        const response = await axios.get(`${API_BASE_URL}/users/${userId}`,);
         console.log(response);
         return response.data;
     } catch (error) {
@@ -56,14 +48,7 @@ export const getUserById = async (userId) => {
 
 export const getUserImageId = async (userId) => {
     try {
-        const token = getAuthTokenFromCookies();
-        if (!token) {
-            throw new Error("Authorization token not found in cookies");
-        }
         const response = await axios.get(`${API_BASE_URL}/users/${userId}/image`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            },
             responseType: 'blob'
         });
 

@@ -193,7 +193,7 @@ const ReviewForm = ({ productId }) => {
                     >
                         <div className="review-header">
                             <img
-                                src={usersData[review.userId]?.image || "/assets/empty.jpg"}
+                                src={usersData[review.userId]?.image}
                                 alt="avatar"
                                 className="user-avatar"
                             />
