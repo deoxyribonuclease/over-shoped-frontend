@@ -36,6 +36,7 @@ function App() {
                     <Routes>
                         <Route path="/item/:id" element={<Main />} />
                         <Route path="/" element={<MainPage />} />
+                        <Route path="/search/contains/:searchText" element={<MainPage />} />
                         <Route path="/open" element={<AddPage />} />
                     </Routes>
                 </div>

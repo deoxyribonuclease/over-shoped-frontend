@@ -1,60 +1,166 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import ProductGrid from "./ProductGrid.jsx";
 import '../styles/filtersidebar.css';
 import MultiRangeSlider from "./MultiRangeSlider.jsx";
-import axios from "axios"; // Імпортуємо axios для роботи з API
-import { fetchAllShops } from '../../api/shopApi'; // Імпортуємо функцію для отримання магазинів
-
-const productTypes = ["Техніка", "Продовольчі товари", "Інше"];
+import { fetchAllShops } from '../../api/shopApi';
+import { fetchCategories, fetchCategoryProperties } from "../../api/searchApi.jsx";
 
 function FilterSidebar({ isShowing, onSortChange }) {
-    const [selectedCategories, setSelectedCategories] = useState([]);
+    const [selectedShopIds, setSelectedShopIds] = useState([]);  // Замість назв зберігаємо ID
+    const [selectedCategoryId, setSelectedCategoryId] = useState("");  // ID для категорії
     const [selectedProductTypes, setSelectedProductTypes] = useState([]);
+    const [selectedOrder, setSelectedOrder] = useState(null);
 
-    // Ініціалізуємо усі списки як відкриті
+    const [isShopCollapsed, setIsShopCollapsed] = useState(false);
     const [isCategoryCollapsed, setIsCategoryCollapsed] = useState(false);
-    const [isProductTypeCollapsed, setIsProductTypeCollapsed] = useState(false);
     const [isPriceCollapsed, setIsPriceCollapsed] = useState(false);
+    const [isRatingCollapsed, setIsRatingCollapsed] = useState(false);
+    const [isPropertiesCollapsed, setIsPropertiesCollapsed] = useState(false);
 
-    // Стан для збереження магазинів
+    const [shops, setShops] = useState([]);
     const [categories, setCategories] = useState([]);
+    const [properties, setProperties] = useState([]);
+    const [selectedProperties, setSelectedProperties] = useState([]); // Для обраних властивостей
 
-    // Завантажуємо магазини при монтуванні компонента
+    const [priceRange, setPriceRange] = useState({ min: 0, max: 10000 });
+    const [ratingRange, setRatingRange] = useState({ min: 0, max: 5 });  // Додано стан для рейтингу
+
     useEffect(() => {
-        const loadShops = async () => {
+        const loadData = async () => {
             try {
-                const shops = await fetchAllShops();
-                const shopNames = shops.map(shop => shop.shopName);
-                setCategories(shopNames); // Зберігаємо імена магазинів у стан
+                const shopResponse = await fetchAllShops();
+                setShops(shopResponse.map(shop => ({ shopId: shop.shopId, name: shop.shopName })));
+
+                const categoryResponse = await fetchCategories();
+                setCategories(categoryResponse.map(category => ({ id: category.id, name: category.name })));
             } catch (error) {
-                console.error("Помилка завантаження магазинів:", error);
+                console.error("Помилка завантаження даних:", error);
             }
         };
 
-        loadShops();
+        loadData();
     }, []);
 
-    const toggleCategory = (category) => {
-        setSelectedCategories((prev) =>
-            prev.includes(category)
-                ? prev.filter((c) => c !== category)
-                : [...prev, category]
-        );
+    useEffect(() => {
+        const loadProperties = async () => {
+            if (selectedCategoryId) {
+                try {
+                    const propertiesResponse = await fetchCategoryProperties(selectedCategoryId);
+                    setProperties(propertiesResponse);
+                } catch (error) {
+                    console.error("Помилка завантаження властивостей категорії:", error);
+                }
+            }
+        };
+
+        loadProperties();
+    }, [selectedCategoryId]);
+
+    const toggleShopSelection = (shopId) => {
+        setSelectedShopIds((prev) => {
+            if (prev.includes(shopId)) {
+                return prev.filter((id) => id !== shopId);
+            } else {
+                return [...prev, shopId];
+            }
+        });
     };
 
-    const toggleProductType = (productType) => {
-        setSelectedProductTypes((prev) =>
-            prev.includes(productType)
-                ? prev.filter((pt) => pt !== productType)
-                : [...prev, productType]
-        );
+    const handleSortChange = (event) => {
+        const value = event.target.value;
+        setSelectedOrder(value);
+        onSortChange(value);
+    };
+
+
+    const handleCategoryChange = (categoryId) => {
+        setSelectedCategoryId(categoryId);
+        setSelectedProperties([]); // Очищуємо обрані властивості при зміні категорії
+    };
+
+    const togglePropertyValue = (propertyName, value) => {
+        setSelectedProperties((prevSelected) => {
+            const updatedProperties = [...prevSelected];
+            const propertyIndex = updatedProperties.findIndex((p) => p.name === propertyName);
+
+            if (propertyIndex === -1) {
+                updatedProperties.push({ name: propertyName, values: [value] });
+            } else {
+                const values = updatedProperties[propertyIndex].values;
+                if (values.includes(value)) {
+                    updatedProperties[propertyIndex].values = values.filter((v) => v !== value);
+                } else {
+                    updatedProperties[propertyIndex].values = [...values, value];
+                }
+            }
+
+            return updatedProperties.filter((prop) => prop.values.length > 0);
+        });
+    };
+
+    const handlePriceChange = (min, max) => {
+        setPriceRange({ min, max });
+    };
+
+    const handleRatingChange = (min, max) => {
+        setRatingRange({ min, max });
+    };
+
+    const filters = {
+        shopId: selectedShopIds,
+        categoryId: selectedCategoryId,
+        priceRange: priceRange,
+        ratingRange: ratingRange,
+        properties: selectedProperties,
+        orderBy: selectedOrder || 'null',
+        page: 1,
+        itemsPerPage: 16
+    };
+
+    const resetFilters = () => {
+        setSelectedShopIds([]);
+        setSelectedCategoryId("");
+        setSelectedProductTypes([]);
+        setSelectedOrder(null);
+        setSelectedProperties([]);
+        setPriceRange({ min: 0, max: 10000 });
+        setRatingRange({ min: 0, max: 5 });
+        window.location.reload()
     };
 
     return (
         <div className="container">
             <aside className={`sidebar ${isShowing ? "show" : ""}`}>
+                <h3 onClick={() => setIsShopCollapsed(!isShopCollapsed)}>
+                    Магазини {isShopCollapsed ? "▲" : "▼"}
+                </h3>
+                <ul
+                    style={{
+                        backgroundColor: "#525870",
+                        maxHeight: isShopCollapsed ? '0px' : '250px',
+                        overflowY: 'auto',
+                        transition: 'max-height 0.3s ease',
+                    }}
+                >
+                    {shops.map((shop, index) => (
+                        <li key={index}>
+                            <label className="custom-checkbox">
+                                <input
+                                    type="checkbox"
+                                    checked={selectedShopIds.includes(shop.shopId)}
+                                    onChange={() => toggleShopSelection(shop.shopId)}
+                                />
+                                <span className="checkmark"></span>
+                                {shop.name}
+                            </label>
+                        </li>
+                    ))}
+                </ul>
+
+                <div className="separator"></div>
+
                 <h3 onClick={() => setIsCategoryCollapsed(!isCategoryCollapsed)}>
-                    Магазини {isCategoryCollapsed ? "▲" : "▼"}
+                    Категорії {isCategoryCollapsed ? "▲" : "▼"}
                 </h3>
                 <ul
                     style={{
@@ -66,75 +172,110 @@ function FilterSidebar({ isShowing, onSortChange }) {
                 >
                     {categories.map((category, index) => (
                         <li key={index}>
-                            <label className="custom-checkbox">
+                            <label className="custom-radio">
                                 <input
-                                    type="checkbox"
-                                    checked={selectedCategories.includes(category)}
-                                    onChange={() => toggleCategory(category)}
+                                    type="radio"
+                                    name="category"
+                                    checked={selectedCategoryId === category.id}
+                                    onChange={() => handleCategoryChange(category.id)}
                                 />
-                                <span className="checkmark"></span>
-                                {category}
+                                {category.name}
                             </label>
                         </li>
                     ))}
+                </ul
+
+                >
+
+                <div className="separator"></div>
+
+                <h3 onClick={() => setIsPriceCollapsed(!isPriceCollapsed)}>
+                    Ціна {isPriceCollapsed ? "▲" : "▼"}
+                </h3>
+                <ul style={{maxHeight: isPriceCollapsed ? 0 : 100, zIndex: 5, position: 'relative'}}>
+                    <MultiRangeSlider
+                        min={0}
+                        max={10000}
+                        onChange={({min, max}) => handlePriceChange(min, max)}
+                    />
+                </ul>
+
+
+                <h3 onClick={() => setIsRatingCollapsed(!isRatingCollapsed)}>
+                    Рейтинг {isRatingCollapsed ? "▲" : "▼"}
+                </h3>
+                <ul style={{maxHeight: isRatingCollapsed ? 0 : 100, zIndex: 5, position: 'relative'}}>
+                    <MultiRangeSlider
+                        min={0}
+                        max={5}
+                        onChange={({min, max}) => handleRatingChange(min, max)} // Змінюємо функцію
+                    />
+
+
                 </ul>
 
                 <div className="separator"></div>
-                <h3 onClick={() => setIsProductTypeCollapsed(!isProductTypeCollapsed)}>
-                    Тип Товару {isProductTypeCollapsed ? "▲" : "▼"}
+
+                <h3 onClick={() => setIsPropertiesCollapsed(!isPropertiesCollapsed)}>
+                    Характеристики {isPropertiesCollapsed ? "▲" : "▼"}
                 </h3>
                 <ul
                     style={{
                         backgroundColor: "#525870",
-                        maxHeight: isProductTypeCollapsed ? '0px' : '250px',
+                        maxHeight: isPropertiesCollapsed ? '0px' : '260px',
                         overflowY: 'auto',
                         transition: 'max-height 0.3s ease',
                     }}
                 >
-                    {productTypes.map((productType, index) => (
-                        <li key={index}>
-                            <label className="custom-checkbox">
-                                <input
-                                    type="checkbox"
-                                    checked={selectedProductTypes.includes(productType)}
-                                    onChange={() => toggleProductType(productType)}
-                                />
-                                <span className="checkmark"></span>
-                                {productType}
-                            </label>
-                        </li>
+                    {properties.map((property, index) => (
+                        <div key={index}>
+                            <h4>{property.name}</h4>
+                            <h5>
+                                {property.values.map((value, valueIndex) => (
+                                    <li key={valueIndex} style={{paddingBottom: "7px"}}>
+                                        <label className="custom-checkbox">
+                                            <input
+                                                type="checkbox"
+                                                checked={
+                                                    selectedProperties.find((p) => p.name === property.name)?.values.includes(value) || false
+                                                }
+                                                onChange={() => togglePropertyValue(property.name, value)}
+                                            />
+                                            <span className="checkmark"></span>
+                                            {value}
+                                        </label>
+                                    </li>
+                                ))}
+                            </h5>
+                        </div>
                     ))}
                 </ul>
 
                 <div className="separator"></div>
-                <h3 onClick={() => setIsPriceCollapsed(!isPriceCollapsed)}
-                >Ціна {isPriceCollapsed ? "▲" : "▼"}</h3>
-                <ul style={{ maxHeight: isPriceCollapsed ? 0 : 60,
-                    zIndex: 5,
-                    position: 'relative'
-                }}>
-                    <MultiRangeSlider
-                        min={0}
-                        max={10000}
-                        onChange={({min, max}) => console.log(`min = ${min}, max = ${max}`)}
-                    />
-                </ul>
-                <div className="separator"></div>
+
+                <button onClick={resetFilters} className="reset-button">Скинути фільтри</button>
             </aside>
 
             <div className="main-content">
                 <div className="sorting">
                     <label>
                         Сортувати за:
-                        <select className="selector" onChange={onSortChange}>
-                            <option value="downtoup">Від дешевих до дорогих</option>
-                            <option value="uptodown">Від дорогих до дешевих</option>
-                            <option value="rating">Рейтинг</option>
+                        <select className="selector" onChange={handleSortChange} value={selectedOrder}>
+                            <option value="price_asc">Від дешевих до дорогих</option>
+                            <option value="price_desc">Від дорогих до дешевих</option>
+                            <option value="rating_asc">Рейтинг ↑</option>
+                            <option value="rating_desc">Рейтинг ↓</option>
+                            <option value='null'>Без</option>
                         </select>
                     </label>
                 </div>
 
-                <ProductGrid selectedCategories={selectedCategories} selectedProductTypes={selectedProductTypes}/>
+                <ProductGrid
+                    filters={filters}
+                    selectedShopIds={selectedShopIds}
+                    selectedProductTypes={selectedProductTypes}
+                    selectedProperties={selectedProperties}
+                />
             </div>
         </div>
     );

@@ -30,7 +30,7 @@ export const fetchProductById = async (id) => {
         salePercent: data.discountPercentage / 100 || 0,
         amount: data.stock || 0,
         images: data.images || [],
-        rating: data.rating || null, // Add the rating here
+        rating: data.rating || null,
     };
 };
 

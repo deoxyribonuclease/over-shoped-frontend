@@ -149,6 +149,7 @@ nav {
     }
 
     .nav-right {
+        margin-left: 3rem;
         gap: 4.7rem;
         justify-content: space-between;
     }

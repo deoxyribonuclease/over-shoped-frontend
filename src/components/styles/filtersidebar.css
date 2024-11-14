@@ -46,7 +46,7 @@
 .sidebar {
     background-color: #59607A;
 
-    width: 250px;
+    width: 255px;
     padding: 30px;
 
     border-right: 1px solid #ddd;
@@ -57,10 +57,11 @@
 /* Заголовки */
 .sidebar h2,
 .sidebar h3 {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     margin-bottom: 15px;
     -webkit-text-stroke: 0.02rem #1c2c38;
     color: #F8F1F1;
+    white-space: nowrap;
     font-family: 'Poppins', sans-serif;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -77,6 +78,7 @@
     font-weight: 600;
 }
 
+
 /* Список фільтрів */
 .sidebar ul {
     -webkit-text-stroke: 0.02rem #1c2c38;
@@ -84,13 +86,32 @@
     transition: max-height 0.3s ease-out;
     overflow: hidden;
     list-style-type: none;
-    font-size: 1.6rem;
-    padding: 0;
-    margin: 0;
+    font-size: 1.5rem;
+
+    padding-left: 3px;
+    padding-right: 3px;
     color: #ffffff;
+
     text-decoration: none;
     font-weight: 600;
 }
+
+.reset-button {
+    background-color: #1c2c38;
+    border-radius: 5px;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.reset-button:hover {
+    background-color: #51a6a6;
+}
+
 
 .sidebar ul.expanded {
     max-height: 120px;

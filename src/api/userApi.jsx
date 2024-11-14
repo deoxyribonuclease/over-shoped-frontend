@@ -60,6 +60,6 @@ export const getUserImageId = async (userId) => {
         }
     } catch (error) {
         console.error("Error fetching user image:", error);
-        return null;  // В разі помилки також повертаємо null
+        return null;
     }
 };

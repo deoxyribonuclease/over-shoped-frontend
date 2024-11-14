@@ -10,13 +10,13 @@ import { getUserImageId } from "../../api/userApi.jsx";
 import { jwtDecode } from "jwt-decode";
 import "../styles/navigator.css";
 
-
 const navLinks = ["Каталог", "me", "please"];
 
 const Navigator = ({ openModal }) => {
   const [showingCart, setShowingCart] = useState(false);
   const [avatarUrl, setAvatarUrl] = useState(null);
   const [totalCartSize, setTotalCartSize] = useState(0);
+  const [searchText, setSearchText] = useState(""); // Added search state
 
   const token = Cookies.get('authToken');
   const navigate = useNavigate();
@@ -64,8 +64,12 @@ const Navigator = ({ openModal }) => {
     navigate('/');
   };
 
-
-
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchText.trim()) {
+      navigate(`/search?query=${searchText}`);
+    }
+  };
 
   return (
       <header className="navigator-wrapper">
@@ -77,9 +81,6 @@ const Navigator = ({ openModal }) => {
             <div className="logo" onClick={handleLogoClick}>
               <Logo/>
             </div>
-
-
-
             <ul className="nav-links">
               {navLinks.map((link, idx) => (
                   <li key={idx}>
@@ -89,8 +90,14 @@ const Navigator = ({ openModal }) => {
             </ul>
           </div>
           <div className="nav-center">
-            <form className="search-form">
-              <input type="text" className="search-input" placeholder="Пошук..."/>
+            <form className="search-form" onSubmit={handleSearchSubmit}>
+              <input
+                  type="text"
+                  className="search-input"
+                  placeholder="Пошук..."
+                  value={searchText}
+                  onChange={(e) => setSearchText(e.target.value)}
+              />
               <button type="submit" className="search-button">🔍︎ Пошук</button>
             </form>
           </div>

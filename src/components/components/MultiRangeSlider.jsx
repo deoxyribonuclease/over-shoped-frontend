@@ -5,18 +5,15 @@ import "../styles/multiRangeSlider.css";
 const MultiRangeSlider = ({ min, max, onChange }) => {
     const [minVal, setMinVal] = useState(min);
     const [maxVal, setMaxVal] = useState(max);
+    const [isButtonClicked, setIsButtonClicked] = useState(false); // Стан для кнопки
     const minValRef = useRef(min);
     const maxValRef = useRef(max);
     const range = useRef(null);
-
 
     const getPercent = useCallback(
         (value) => Math.round(((value - min) / (max - min)) * 100),
         [min, max]
     );
-
-
-
 
     useEffect(() => {
         const minPercent = getPercent(minVal);
@@ -28,7 +25,6 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
         }
     }, [minVal, getPercent]);
 
-
     useEffect(() => {
         const minPercent = getPercent(minValRef.current);
         const maxPercent = getPercent(maxVal);
@@ -38,10 +34,12 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
         }
     }, [maxVal, getPercent]);
 
-
     useEffect(() => {
-        onChange({ min: minVal, max: maxVal });
-    }, [minVal, maxVal, onChange]);
+        if (isButtonClicked) {
+            onChange({ min: minVal, max: maxVal });
+            setIsButtonClicked(false);
+        }
+    }, [isButtonClicked]);
 
     const handleMinInputChange = (event) => {
         const inputValue = Number(event.target.value);
@@ -79,7 +77,9 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
         }
     };
 
-
+    const handleButtonClick = () => {
+        setIsButtonClicked(true); // Встановлюємо стан при натисканні на кнопку
+    };
 
     return (
         <div>
@@ -102,11 +102,9 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
                         max={max}
                     />
                 </div>
-                <button className="ok-button">OK</button>
+                <button className="ok-button" onClick={handleButtonClick}>OK</button>
             </div>
             <div className="container-slider">
-
-
                 <input
                     type="range"
                     min={min}
@@ -136,7 +134,6 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
                 <div className="slider">
                     <div className="slider__track"/>
                     <div ref={range} className="slider__range"/>
-
                 </div>
             </div>
         </div>

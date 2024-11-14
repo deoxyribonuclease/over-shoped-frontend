@@ -5,17 +5,19 @@ import ReactPaginate from "react-paginate";
 import '../styles/Pagination.css';
 import { getPaginatedProducts } from "../../api/ItemsApi.jsx";
 import Empty from "../../assets/empty.jpg";
+import { searchProducts } from "../../api/searchApi.jsx"; // Import the searchProducts function
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
 }
 
-function ProductGrid() {
+function ProductGrid({ filters }) { // Accept filters as a prop
     const [products, setProducts] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
     const [loading, setLoading] = useState(false);
     const query = useQuery();
     const navigate = useNavigate();
+
 
     const currentPage = parseInt(query.get("page")) || 1;
     const itemsPerPage = 16;
@@ -24,7 +26,14 @@ function ProductGrid() {
         const fetchProducts = async () => {
             setLoading(true);
             try {
-                const data = await getPaginatedProducts(currentPage, itemsPerPage);
+                console.log(filters)
+                setProducts([]);
+                const data = await searchProducts({
+                    ...filters,
+                    page: currentPage,
+                    itemsPerPage: itemsPerPage,
+                });
+                console.log(data)
                 setProducts(data.products);
                 setTotalPages(data.totalPages);
             } catch (error) {
@@ -39,7 +48,11 @@ function ProductGrid() {
             top: 0,
             behavior: "smooth",
         });
-    }, [currentPage]);
+    }, [filters, currentPage]);
+
+    useEffect(() => {
+        navigate(`?page=${1}`);
+    }, [filters]);
 
     const handlePageClick = ({ selected }) => {
         const newPage = selected + 1;
@@ -59,7 +72,7 @@ function ProductGrid() {
 
     return (
         <div>
-        <div className="product-grid-container">
+            <div className="product-grid-container">
                 {loading && (
                     <div className="loading-grid-screen">
                         <div className="loading-grid-spinner"></div>
@@ -68,22 +81,22 @@ function ProductGrid() {
                 <div className="product-grid">
                     {products.length === 0 && !loading ? renderPlaceholder() : (
                         products.map((product) => (
-                            <ProductCard key={product.id} product={product}/>
+                            <ProductCard key={product.id} product={product} />
                         ))
                     )}
                 </div>
             </div>
             {products.length === 0 && !loading ? "" : (
-            <ReactPaginate
-                previousLabel={"←"}
-                nextLabel={"→"}
-                breakLabel={"..."}
-                pageCount={totalPages}
-                onPageChange={handlePageClick}
-                containerClassName={"pagination"}
-                activeClassName={"active"}
-                forcePage={currentPage - 1}
-            />
+                <ReactPaginate
+                    previousLabel={"←"}
+                    nextLabel={"→"}
+                    breakLabel={"..."}
+                    pageCount={totalPages}
+                    onPageChange={handlePageClick}
+                    containerClassName={"pagination"}
+                    activeClassName={"active"}
+                    forcePage={currentPage - 1}
+                />
             )}
         </div>
     );
