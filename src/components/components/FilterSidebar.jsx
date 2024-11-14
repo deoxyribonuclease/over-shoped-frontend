@@ -1,17 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ProductGrid from "./ProductGrid.jsx";
 import '../styles/filtersidebar.css';
 import MultiRangeSlider from "./MultiRangeSlider.jsx";
+import axios from "axios"; // Імпортуємо axios для роботи з API
+import { fetchAllShops } from '../../api/shopApi'; // Імпортуємо функцію для отримання магазинів
 
-const categories = ["Rozetka", "Comfy", "Allo"];
 const productTypes = ["Техніка", "Продовольчі товари", "Інше"];
 
 function FilterSidebar({ isShowing, onSortChange }) {
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [selectedProductTypes, setSelectedProductTypes] = useState([]);
+
+    // Ініціалізуємо усі списки як відкриті
     const [isCategoryCollapsed, setIsCategoryCollapsed] = useState(false);
     const [isProductTypeCollapsed, setIsProductTypeCollapsed] = useState(false);
     const [isPriceCollapsed, setIsPriceCollapsed] = useState(false);
+
+    // Стан для збереження магазинів
+    const [categories, setCategories] = useState([]);
+
+    // Завантажуємо магазини при монтуванні компонента
+    useEffect(() => {
+        const loadShops = async () => {
+            try {
+                const shops = await fetchAllShops();
+                const shopNames = shops.map(shop => shop.shopName);
+                setCategories(shopNames); // Зберігаємо імена магазинів у стан
+            } catch (error) {
+                console.error("Помилка завантаження магазинів:", error);
+            }
+        };
+
+        loadShops();
+    }, []);
 
     const toggleCategory = (category) => {
         setSelectedCategories((prev) =>
@@ -29,17 +50,20 @@ function FilterSidebar({ isShowing, onSortChange }) {
         );
     };
 
-
-
     return (
         <div className="container">
             <aside className={`sidebar ${isShowing ? "show" : ""}`}>
                 <h3 onClick={() => setIsCategoryCollapsed(!isCategoryCollapsed)}>
                     Магазини {isCategoryCollapsed ? "▲" : "▼"}
                 </h3>
-                <ul style={{ maxHeight: isCategoryCollapsed ? 0 : 90,
-                    zIndex: 5,
-                    position: 'relative' }}>
+                <ul
+                    style={{
+                        backgroundColor: "#525870",
+                        maxHeight: isCategoryCollapsed ? '0px' : '250px',
+                        overflowY: 'auto',
+                        transition: 'max-height 0.3s ease',
+                    }}
+                >
                     {categories.map((category, index) => (
                         <li key={index}>
                             <label className="custom-checkbox">
@@ -59,9 +83,14 @@ function FilterSidebar({ isShowing, onSortChange }) {
                 <h3 onClick={() => setIsProductTypeCollapsed(!isProductTypeCollapsed)}>
                     Тип Товару {isProductTypeCollapsed ? "▲" : "▼"}
                 </h3>
-                <ul style={{ maxHeight: isProductTypeCollapsed ? 0 : 110,
-                    zIndex: 5,
-                    position: 'relative' }}>
+                <ul
+                    style={{
+                        backgroundColor: "#525870",
+                        maxHeight: isProductTypeCollapsed ? '0px' : '250px',
+                        overflowY: 'auto',
+                        transition: 'max-height 0.3s ease',
+                    }}
+                >
                     {productTypes.map((productType, index) => (
                         <li key={index}>
                             <label className="custom-checkbox">
@@ -76,8 +105,6 @@ function FilterSidebar({ isShowing, onSortChange }) {
                         </li>
                     ))}
                 </ul>
-
-
 
                 <div className="separator"></div>
                 <h3 onClick={() => setIsPriceCollapsed(!isPriceCollapsed)}
@@ -98,15 +125,14 @@ function FilterSidebar({ isShowing, onSortChange }) {
             <div className="main-content">
                 <div className="sorting">
                     <label>
-                    Сортувати за:
+                        Сортувати за:
                         <select className="selector" onChange={onSortChange}>
                             <option value="downtoup">Від дешевих до дорогих</option>
-                            <option value="uptodown">Від дорогих до дешеевих</option>
+                            <option value="uptodown">Від дорогих до дешевих</option>
                             <option value="rating">Рейтинг</option>
                         </select>
                     </label>
                 </div>
-
 
                 <ProductGrid selectedCategories={selectedCategories} selectedProductTypes={selectedProductTypes}/>
             </div>

@@ -1,26 +1,51 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import '../styles/productcard.css';
 import prodImg from "../../assets/itemPlaceholder.png"
-function ProductCard({ product }) {
+import { fetchShopById } from "../../api/shopApi.jsx";
+
+function ProductCard({ product, shop }) {
     const navigate = useNavigate();
+    const [shopInfo, setShopInfo] = useState(null);
+
+    useEffect(() => {
+        const fetchShopInfo = async () => {
+            try {
+                const shopData = await fetchShopById(product.shopId);
+                setShopInfo(shopData);
+            } catch (error) {
+                console.error("Error fetching shop info:", error);
+            }
+        };
+
+        fetchShopInfo();
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    }, []);
 
     const defaultProduct = {
         id: 0,
-        shop: "Магазин не вказано",
+        shop: shopInfo?.shopName || "Магазин не вказано",
         name: "Назва не вказана",
         price: 0,
         discountPercentage: 0,
-        rating: "N/A",
+        rating: 0.0,
         images: prodImg,
     };
 
-    const currentProduct = { ...defaultProduct, ...product };
+
+
+    const currentProduct = {
+        ...defaultProduct,
+        ...product,
+        rating: product.rating ?? 0
+    };
 
     const handleBuyNow = () => {
         navigate(`/item/${currentProduct.id}`);
     };
-
 
     const discountedPrice = currentProduct.discountPercentage > 0
         ? currentProduct.price * (1 - currentProduct.discountPercentage / 100)
@@ -51,7 +76,7 @@ function ProductCard({ product }) {
                     )}
                 </p>
                 <p className="product-rating">
-                    Рейтинг: <span className="rating-value">{currentProduct.rating} ★</span>
+                    Рейтинг: <span className="rating-value">{currentProduct.rating.toFixed(2)} ★</span>
                 </p>
                 <button
                     className="buy-button"

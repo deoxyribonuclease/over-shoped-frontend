@@ -7,6 +7,8 @@ import { fetchProductById } from "../../Api/ItemsApi.jsx";
 import ReviewForm from "../../components/components/ReviewForm.jsx";
 import "../styles/product.css";
 import Empty from "../../assets/empty.jpg";
+import { fetchShopById } from "../../api/shopApi.jsx";
+import ProductPropertiesTable from "../../components/components/ProductPropertiesTable.jsx";
 
 const Product = () => {
     const { id } = useParams();
@@ -14,11 +16,16 @@ const Product = () => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    const [shopInfo, setShopInfo] = useState(null);
+
+
+
     useEffect(() => {
         const fetchProduct = async () => {
             setLoading(true);
             try {
                 const fetchedProduct = await fetchProductById(id);
+                console.log(fetchedProduct);
                 setProduct({ ...fetchedProduct, images: fetchedProduct.images.length ? fetchedProduct.images : productImages });
             } catch (err) {
                 setError(err.message);
@@ -26,8 +33,29 @@ const Product = () => {
                 setLoading(false);
             }
         };
+
         fetchProduct();
+
     }, [id]);
+
+    useEffect(() => {
+        const fetchShopInfo = async () => {
+            if (product && product.shopId) {
+                try {
+                    const shopData = await fetchShopById(product.shopId);
+                    console.log(shopData);
+                    setShopInfo(shopData);
+                } catch (error) {
+                    console.error("Error fetching shop info:", error);
+                }
+            }
+        };
+
+        if (product) {
+            fetchShopInfo();
+        }
+    }, [product]);
+
 
     if (loading) {
         return (
@@ -63,8 +91,9 @@ const Product = () => {
                     productImages={product.images}
                     productThumbnails={product.images}
                 />
-                <ProductInfo {...product} />
+                <ProductInfo {...product} {...shopInfo} />
             </div>
+            <ProductPropertiesTable productId={id} />
             <ReviewForm productId={id} />
         </div>
     );

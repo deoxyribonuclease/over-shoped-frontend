@@ -31,6 +31,34 @@
             margin-bottom: 2.4rem;
         }
 
+        /* Rating and Stock Section Styling */
+        .rating-stock-section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.6rem;
+        }
+
+        .rating, .stock {
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        .rating-title {
+            color: var(--dark-grayish-blue);
+            margin-right: 0.8rem;
+        }
+
+        .rating-value {
+            font-weight: 700;
+            color: #c0af63;
+        }
+
+        .stock-status {
+            color: var(--dark-grayish-blue);
+            font-weight: 500;
+        }
+
+
         .pricing {
             display: grid;
             align-items: center;
@@ -74,9 +102,10 @@
 
         .inner-info {
             .company-name {
-                font-size: 1.3rem;
+                font-size: 1.6rem;
                 line-height: 1.6rem;
                 margin-bottom: 0.4rem;
+                color: #6b7e58;
             }
 
             .product-name {

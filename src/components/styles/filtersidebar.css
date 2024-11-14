@@ -46,7 +46,6 @@
 .sidebar {
     background-color: #59607A;
 
-
     width: 250px;
     padding: 30px;
 
@@ -296,7 +295,7 @@
 
 .no-products-placeholder {
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 20px;

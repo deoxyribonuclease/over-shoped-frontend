@@ -9,10 +9,10 @@ const getAuthTokenFromCookies = () => {
     return authTokenCookie ? authTokenCookie.split('=')[1] : null;
 };
 
-export const registerUser = async (email, password) => {
+export const registerUser = async (email, password, name) => {
     try {
         const response = await axios.post(`${API_BASE_URL}/auth/register`, {
-             email: email, password: password
+             email: email, password: password, name: name
         });
         console.log(response);
         return response.data;

@@ -101,15 +101,16 @@ const handleRepeatPasswordChange = (event) => {
         event.preventDefault();
         if (validateFields()) {
             try {
-                const data = await registerUser(email, password);
-                if (data.message.message) {
+                const data = await registerUser(email, password, name);
+                if (data.message) {
                     triggerAlert('Користувач успішно зареєстрований!', 'success');
                     onSwitchForm('login');
-                } else if (data.message.error) {
+                } else if (data.error) {
                     triggerAlert('Користувач з таким email вже існує!', 'error');
                 }
             } catch (error) {
                 triggerAlert('Щось пішло не так...', 'error');
+                console.log(error);
             }
         } else {
             console.log('Form failed to validate');
