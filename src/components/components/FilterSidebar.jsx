@@ -6,8 +6,8 @@ import { fetchAllShops } from '../../api/shopApi';
 import { fetchCategories, fetchCategoryProperties } from "../../api/searchApi.jsx";
 
 function FilterSidebar({ isShowing, onSortChange }) {
-    const [selectedShopIds, setSelectedShopIds] = useState([]);  // Замість назв зберігаємо ID
-    const [selectedCategoryId, setSelectedCategoryId] = useState("");  // ID для категорії
+    const [selectedShopIds, setSelectedShopIds] = useState([]);
+    const [selectedCategoryId, setSelectedCategoryId] = useState("");
     const [selectedProductTypes, setSelectedProductTypes] = useState([]);
     const [selectedOrder, setSelectedOrder] = useState(null);
 
@@ -20,10 +20,10 @@ function FilterSidebar({ isShowing, onSortChange }) {
     const [shops, setShops] = useState([]);
     const [categories, setCategories] = useState([]);
     const [properties, setProperties] = useState([]);
-    const [selectedProperties, setSelectedProperties] = useState([]); // Для обраних властивостей
+    const [selectedProperties, setSelectedProperties] = useState([]);
 
     const [priceRange, setPriceRange] = useState({ min: 0, max: 10000 });
-    const [ratingRange, setRatingRange] = useState({ min: 0, max: 5 });  // Додано стан для рейтингу
+    const [ratingRange, setRatingRange] = useState({ min: 0, max: 5 });
 
     useEffect(() => {
         const loadData = async () => {
@@ -75,7 +75,7 @@ function FilterSidebar({ isShowing, onSortChange }) {
 
     const handleCategoryChange = (categoryId) => {
         setSelectedCategoryId(categoryId);
-        setSelectedProperties([]); // Очищуємо обрані властивості при зміні категорії
+        setSelectedProperties([]);
     };
 
     const togglePropertyValue = (propertyName, value) => {

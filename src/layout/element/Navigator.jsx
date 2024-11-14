@@ -6,7 +6,7 @@ import { avatar } from "../../assets/imagedata.js";
 import { useNavigate } from "react-router-dom";
 import Heart from "../../icons/Heart.jsx";
 import List from "../../icons/List.jsx";
-import { getUserImageId } from "../../api/userApi.jsx";
+import {getUserById, getUserImageId} from "../../api/userApi.jsx";
 import { jwtDecode } from "jwt-decode";
 import "../styles/navigator.css";
 
@@ -16,7 +16,8 @@ const Navigator = ({ openModal }) => {
   const [showingCart, setShowingCart] = useState(false);
   const [avatarUrl, setAvatarUrl] = useState(null);
   const [totalCartSize, setTotalCartSize] = useState(0);
-  const [searchText, setSearchText] = useState(""); // Added search state
+  const [searchText, setSearchText] = useState("");
+  const [userRole, setUserRole] = useState("");
 
   const token = Cookies.get('authToken');
   const navigate = useNavigate();
@@ -26,6 +27,8 @@ const Navigator = ({ openModal }) => {
       if (token) {
         try {
           const userId = jwtDecode(token).user.id;
+          const userRoleData = await getUserById(userId)
+          setUserRole(userRoleData.role);
           const userData = await getUserImageId(userId);
           setAvatarUrl(userData);
         } catch (error) {
@@ -52,9 +55,21 @@ const Navigator = ({ openModal }) => {
     };
   }, []);
 
+  const handlShopPanelClick= () => {
+    if (token) {
+      if (userRole === "Магазин") {
+        navigate('/shop-dashboard');
+      } else {
+        navigate('/profile');
+      }
+    } else {
+      openModal();
+    }
+  };
+
   const handleAvatarClick = () => {
     if (token) {
-      navigate('/profile');
+        navigate('/profile');
     } else {
       openModal();
     }
@@ -122,6 +137,11 @@ const Navigator = ({ openModal }) => {
                   <img src={avatar} alt="User Avatar"/>
               )}
             </button>
+            {userRole === "Магазин" ? (
+                <button className="search-button" onClick={handlShopPanelClick}>Магазин-панель</button>
+            ) : (
+               <div></div>
+            )}
             <FloatingCart setShowingCart={setShowingCart}
                           showingCart={showingCart}
                           className={showingCart ? "active" : ""}/>
