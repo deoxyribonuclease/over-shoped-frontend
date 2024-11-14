@@ -22,7 +22,7 @@ export const fetchProductById = async (id) => {
 
     return {
         productId: data.id,
-        companyName: data.category || "Компанія за замовчуванням",
+        shopId: data.shopId || "Компанія за замовчуванням",
         productName: data.name,
         productDescription: data.description || "Немає опису.",
         productPrice: data.price || 0,
@@ -30,8 +30,20 @@ export const fetchProductById = async (id) => {
         salePercent: data.discountPercentage / 100 || 0,
         amount: data.stock || 0,
         images: data.images || [],
+        rating: data.rating || null, // Add the rating here
     };
 };
+
+export const fetchProductProperties = async (productId) => {
+    try {
+        const response = await axios.get(`${API_BASE_URL}/products/properties/${productId}`);
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching product properties:", error);
+        throw error;
+    }
+};
+
 
 
 

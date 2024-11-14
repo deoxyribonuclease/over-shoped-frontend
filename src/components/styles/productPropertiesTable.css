@@ -1,0 +1,72 @@
+.product-properties-table {
+    padding: 2rem;
+    background-color: #f4f4f5;
+    border-radius: 8px;
+
+    margin-bottom: 3rem;
+}
+
+.product-properties-table h2 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--dark-grayish-blue);
+    margin-bottom: 2rem;
+}
+
+.product-properties-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.product-properties-table thead {
+    background-color: #1c2c38;
+    color: #d9d5d2;
+}
+
+.product-properties-table th,
+.product-properties-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.product-properties-table th {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+.product-properties-table td {
+    font-size: 1.6rem;
+    color: var(--dark-grayish-blue);
+    line-height: 2.2rem;
+}
+
+.product-properties-table tbody tr:nth-child(odd) {
+    background-color: #f7f7f7;
+}
+
+.product-properties-table tbody tr:hover {
+    background-color: #f4f7f4;
+    transition: background-color 0.3s;
+}
+
+.product-properties-table .loading,
+.product-properties-table .error {
+    font-size: 1.8rem;
+    color: #afabab;
+    padding: 1rem;
+    text-align: center;
+}
+.no-properties {
+    margin-bottom: 3rem;
+    font-size: 1.8rem;
+    color: #afabab;
+    padding: 1rem;
+    text-align: center;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+    margin-top: 2rem;
+}
