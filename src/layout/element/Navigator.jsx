@@ -26,13 +26,20 @@ const Navigator = ({ openModal }) => {
     const fetchUserAvatar = async () => {
       if (token) {
         try {
-          const userId = jwtDecode(token).user.id;
-          const userRoleData = await getUserById(userId)
+          const decodedToken = jwtDecode(token);
+          const userId = decodedToken.user.id;
+
+          if (decodedToken.exp * 1000 < Date.now()) {
+            throw new Error("Token has expired");
+          }
+
+          const userRoleData = await getUserById(userId);
           setUserRole(userRoleData.role);
           const userData = await getUserImageId(userId);
           setAvatarUrl(userData);
         } catch (error) {
-          console.error("Failed to fetch user avatar:", error);
+          console.error("Failed to fetch user avatar or token is invalid:", error);
+          Cookies.remove('authToken');
         }
       }
     };
