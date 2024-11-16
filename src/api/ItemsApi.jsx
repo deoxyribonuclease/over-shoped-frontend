@@ -44,6 +44,92 @@ export const fetchProductProperties = async (productId) => {
     }
 };
 
+export const fetchProductsByShopId = async (shopId) => {
+    try {
+        const response = await axios.get(`${API_BASE_URL}/products/${shopId}`);
+        return response.data; // Повертаємо масив продуктів
+    } catch (error) {
+        console.error("Помилка завантаження товарів для магазину:", error);
+        throw error;
+    }
+};
+
+export const createProduct = async (productData) => {
+    try {
+        const response = await axios.post(`${API_BASE_URL}/products`, productData);
+        return response.data;
+    } catch (error) {
+        console.error("Error creating product:", error);
+        throw error;
+    }
+};
+
+export const updateProduct = async (id, productData) => {
+    try {
+        const response = await axios.patch(`${API_BASE_URL}/products/${id}`, productData);
+        return response.data;
+    } catch (error) {
+        console.error("Error updating product:", error);
+        throw error;
+    }
+};
+
+export const deleteProduct = async (id) => {
+    try {
+        await axios.delete(`${API_BASE_URL}/products/${id}`);
+    } catch (error) {
+        console.error("Error deleting product:", error);
+        throw error;
+    }
+};
+
+export const getAllProductProperties = async (productId) => {
+    try {
+        const response = await axios.get(`${API_BASE_URL}/products/properties/${productId}`);
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching product properties:", error);
+        throw error;
+    }
+};
+
+
+
+export const createProductProperty = async (productId, propertyData) => {
+    try {
+        const response = await axios.post(`${API_BASE_URL}/products/properties`, {
+            productId,
+            ...propertyData
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Error creating product property:", error);
+        throw error;
+    }
+};
+
+
+
+
+export const updateProductProperty = async (productId, propertyId, propertyData) => {
+    try {
+        const response = await axios.patch(`${API_BASE_URL}/products/properties/${productId}/${propertyId}`, propertyData);
+        return response.data;
+    } catch (error) {
+        console.error("Error updating product property:", error);
+        throw error;
+    }
+};
+
+
+export const deleteProductProperty = async (productId, propertyId) => {
+    try {
+        await axios.delete(`${API_BASE_URL}/products/properties/${productId}/${propertyId}`);
+    } catch (error) {
+        console.error("Error deleting product property:", error);
+        throw error;
+    }
+};
 
 
 

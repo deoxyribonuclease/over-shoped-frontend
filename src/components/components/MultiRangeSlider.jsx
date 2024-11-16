@@ -5,7 +5,7 @@ import "../styles/multiRangeSlider.css";
 const MultiRangeSlider = ({ min, max, onChange }) => {
     const [minVal, setMinVal] = useState(min);
     const [maxVal, setMaxVal] = useState(max);
-    const [isButtonClicked, setIsButtonClicked] = useState(false); // Стан для кнопки
+    const [isButtonClicked, setIsButtonClicked] = useState(false);
     const minValRef = useRef(min);
     const maxValRef = useRef(max);
     const range = useRef(null);
@@ -78,7 +78,7 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
     };
 
     const handleButtonClick = () => {
-        setIsButtonClicked(true); // Встановлюємо стан при натисканні на кнопку
+        setIsButtonClicked(true);
     };
 
     return (

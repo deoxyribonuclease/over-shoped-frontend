@@ -4,7 +4,6 @@
 }
 
 
-/* Стилізація для сортування */
 .sorting {
     display: flex;
     align-items: center;
@@ -22,13 +21,11 @@
     font-family: "Kumbh Sans", sans-serif;
 }
 
-/* Лейбл для сортування */
 .sorting label {
     margin-right: 15px;
     font-weight: 600;
 }
 
-/* Селектор для сортування */
 .sorting select {
     padding: 8px 12px;
     border: 1px solid #bbb;
@@ -37,7 +34,6 @@
     transition: border-color 0.3s ease;
 }
 
-/* Ховер-ефект для селектора */
 .sorting select:hover {
     border-color: #888;
 }
@@ -54,7 +50,6 @@
     text-align: left;
 }
 
-/* Заголовки */
 .sidebar h2,
 .sidebar h3 {
     font-size: 1.7rem;
@@ -69,7 +64,6 @@
     cursor: pointer;
 }
 
-/* Фільтри */
 .size-filter,
 .price-filter {
     margin-bottom: 20px;
@@ -79,7 +73,6 @@
 }
 
 
-/* Список фільтрів */
 .sidebar ul {
     -webkit-text-stroke: 0.02rem #1c2c38;
     max-height: 0;
@@ -138,7 +131,7 @@
     margin-right: 10px;
 }
 
-/* Сторінка основного контенту */
+
 .main-content {
     flex: 1;
     padding: 25px;
@@ -146,7 +139,7 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-/* Стійли для продуктів */
+
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -154,7 +147,7 @@
 }
 
 
-/* Поля вводу для опцій */
+
 .size-option,
 .price-option {
     display: flex;
@@ -170,12 +163,12 @@
     box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Слайдер для ціни */
+
 .slider {
     width: 100%;
 }
 
-/* Кастомний чекбокс */
+
 .custom-checkbox {
     position: relative;
     padding-left: 35px;
@@ -241,7 +234,6 @@
     border-top: 2px solid #b0c3ff;
 }
 
-/* Ховер-ефект для посилань */
 .sidebar-link:hover {
     color: #004a99;
     border-bottom: 2px solid #004a99;

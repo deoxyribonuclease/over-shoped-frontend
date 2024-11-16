@@ -38,3 +38,61 @@ export const fetchAllShops = async () => {
     }
 };
 
+export const fetchShopsByUserId = async (userId) => {
+    try {
+        const response = await axios.get(`${API_BASE_URL}/shops/user/${userId}`);
+        const shop = response.data;
+        console.log("Shops API response:", response.data);
+        // Перевіряємо, чи відповідає shop очікуваному формату
+        if (!shop || typeof shop !== "object") {
+            throw new Error("Invalid shop data");
+        }
+
+        return {
+            shopId: shop.id,
+            shopName: shop.name || "Назва не вказана",
+            description: shop.description || "Немає опису",
+            phone: shop.phoneNumber || "Номер телефону не вказано",
+            email: shop.email || "Електронна пошта не вказана",
+            createdAt: shop.createdAt,
+            updatedAt: shop.updatedAt,
+            linkedShopId: shop.shopId || null
+        };
+    } catch (error) {
+        console.error("Error fetching shop by user ID:", error);
+        throw error;
+    }
+};
+
+
+
+export const createShop = async (shopData) => {
+    try {
+        const response = await axios.post(`${API_BASE_URL}/shops`, shopData);
+        return response.data;
+    } catch (error) {
+        console.error("Error creating shop:", error);
+        throw error;
+    }
+};
+
+export const updateShop = async (shopId, updatedData) => {
+    try {
+        const response = await axios.patch(`${API_BASE_URL}/shops/${shopId}`, updatedData);
+        return response.data;
+    } catch (error) {
+        console.error("Error updating shop:", error);
+        throw error;
+    }
+};
+
+
+export const deleteShop = async (shopId) => {
+    try {
+        const response = await axios.delete(`${API_BASE_URL}/shops/${shopId}`);
+        return response.data;
+    } catch (error) {
+        console.error("Error deleting shop:", error);
+        throw error;
+    }
+};

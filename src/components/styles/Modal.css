@@ -7,17 +7,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.5); /* Затінення фону */
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 1000;
 }
 
 .modal {
     background-color: #ffffff;
-    border-radius: 10px; /* Заокруглені кути */
-    padding: 0; /* Відсутність відступів, щоб уникнути проблем із шириною */
-    width: 400px; /* Ширина модального вікна */
-    max-width: 90%; /* Адаптація для мобільних пристроїв */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Тінь */
+    border-radius: 10px;
+    padding: 0;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     position: relative;
     text-align: center;
 
@@ -27,7 +27,7 @@
     position: absolute;
     top: 10px;
     right: 10px;
-    z-index: 1; /* Щоб бути над іншими елементами */
+    z-index: 1;
 }
 
 .close {

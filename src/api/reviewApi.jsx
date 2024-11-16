@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API_BASE_URL = "http://localhost:3000";
 
-// Функція для отримання токену з cookies
+
 const getAuthTokenFromCookies = () => {
     const cookieString = document.cookie;
     const cookies = cookieString.split('; ');
@@ -10,7 +10,7 @@ const getAuthTokenFromCookies = () => {
     return authTokenCookie ? authTokenCookie.split('=')[1] : null;
 };
 
-// Додавання відгуку
+
 export const addReview = async (userId, productId, text, rating) => {
     try {
         const token = getAuthTokenFromCookies();

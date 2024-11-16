@@ -1,14 +1,14 @@
 .form-container {
     display: flex;
-    flex-direction: column; /* Вирівнювання полів вертикально */
-    align-items: center; /* Центрування елементів */
-    padding: 20px; /* Внутрішні відступи */
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
 }
 
 .input-fields {
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Відстань між полями */
+    gap: 15px;
     width: 100%;
     margin-bottom: 15px;
     margin-top:20px;
@@ -19,7 +19,7 @@
     align-items: center;
     border: 1px solid #ccc;
     padding: 0px;
-    width: 100%; /* Ширина на 100% */
+    width: 100%;
     background-color: #fff;
 }
 
@@ -48,12 +48,12 @@
 .submit-button,
 .link-button,
 .google-button {
-    width: 100%; /* Ширина кнопок на 100% */
-    padding: 10px; /* Внутрішні відступи */
-    border: none; /* Без бордеру */
+    width: 100%;
+    padding: 10px;
+    border: none;
 
-    cursor: pointer; /* Курсор у вигляді вказівника при наведенні */
-    margin-bottom: 3px; /* Відстань між кнопками */
+    cursor: pointer;
+    margin-bottom: 3px;
 }
 
 .submit-button {
@@ -62,24 +62,24 @@
 }
 
 .link-button {
-    display: inline-block; /* Встановлення в блочний елемент, щоб контролювати розміри */
-    background-color: transparent; /* Прозорий фон */
-    color: #007bff; /* Синій текст */
-    font-size: 14px; /* Маленький шрифт */
-    text-decoration: underline; /* Підкреслення */
-    margin: 5px 0; /* Відстань між кнопками */
-    cursor: pointer; /* Курсор у вигляді вказівника при наведенні */
-    padding: 0; /* Внутрішні відступи */
+    display: inline-block;
+    background-color: transparent;
+    color: #007bff;
+    font-size: 14px;
+    text-decoration: underline;
+    margin: 5px 0;
+    cursor: pointer;
+    padding: 0;
     text-align:center;
 
 }
 .link-button:hover {
-    text-decoration: none; /* Зняття підкреслення при наведенні */
+    text-decoration: none;
 }
 
 
 .form-container.h2 {
-    text-align: center; /* Центрування тексту */
+    text-align: center;
     margin-top:10px;
     margin-bottom:10px;
     font-size:16px;
@@ -97,7 +97,7 @@
 
 }
 .google-button:hover {
-    background-color: #357ae8; /* Darken button on hover */
+    background-color: #357ae8;
 }
 
 /* Logo inside button */
@@ -105,8 +105,8 @@
     position:absolute;
     left:0;
     top:0;
-    width: 20px;                /* Set logo size inside button */
-    height: 20px;               /* Maintain aspect ratio */
+    width: 20px;
+    height: 20px;
     border-radius:5px;
     margin-top:8px;
     margin-left:7px;
@@ -114,9 +114,9 @@
 }
 
 .error-message {
-    color: red; /* Колір тексту для помилки */
-    font-size: 11px; /* Розмір шрифту */
-    margin-top: -13px; /* Відстань над повідомленням */
+    color: red;
+    font-size: 11px;
+    margin-top: -13px;
     text-align:left;
     margin-left:5px;
 }

@@ -28,7 +28,6 @@ const toggleRepeatPasswordVisibility = () => {
 }
 
 
-//функції для запису в змінні даних користувачем
 const handleEmailChange = (event) => {
     setEmail(event.target.value);
     setEmailError('');
@@ -41,7 +40,7 @@ const handleRepeatPasswordChange = (event) => {
     setRepeatPassword(event.target.value);
     setRepeatPasswordError('');
 }
-//функція валідування з іншого імпортованого компонента
+
 const validateFields = () => {
 
           let emailErr = '';
@@ -49,13 +48,12 @@ const validateFields = () => {
           let repeatPasswordErr = '';
 
           if (stage === 1) {
-              // Only validate email in stage 1
               emailErr = validateEmail(email);
               if (emailErr) {
                   setEmailError(emailErr);
-                  return false; // Stop if there's an email error
+                  return false;
               }
-              setEmailError(''); // Clear any previous errors
+              setEmailError('');
           }
 
           if (stage === 2) {
@@ -63,22 +61,20 @@ const validateFields = () => {
               passwordErr = validatePasswordForSignUp(password);
               if (passwordErr) {
                   setPasswordError(passwordErr);
-                  return false; // Stop if there's a password error
+                  return false;
               } else {
-                  setPasswordError(''); // Clear previous password error
+                  setPasswordError('');
               }
 
-              // Then validate repeat password
               repeatPasswordErr = validateRepeatPassword(password, repeatPassword);
               if (repeatPasswordErr) {
                   setRepeatPasswordError(repeatPasswordErr);
-                  return false; // Stop if repeat password error is found
+                  return false;
               } else {
-                  setRepeatPasswordError(''); // Clear previous repeat password error
+                  setRepeatPasswordError('');
               }
           }
 
-          // If no errors encountered, clear all and return true
           setEmailError('');
           setPasswordError('');
           setRepeatPasswordError('');
@@ -87,7 +83,7 @@ const validateFields = () => {
 
 const handleEmailSubmit = () =>{
     if(validateFields()){
-        setStage(2); //перейти до другої стадії форми
+        setStage(2);
     }
     else{
     console.log('Form failed some field has incorrect formatting!');

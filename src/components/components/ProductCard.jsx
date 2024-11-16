@@ -6,28 +6,11 @@ import { fetchShopById } from "../../api/shopApi.jsx";
 
 function ProductCard({ product, shop }) {
     const navigate = useNavigate();
-    const [shopInfo, setShopInfo] = useState(null);
 
-    useEffect(() => {
-        const fetchShopInfo = async () => {
-            try {
-                const shopData = await fetchShopById(product.shopId);
-                setShopInfo(shopData);
-            } catch (error) {
-                console.error("Error fetching shop info:", error);
-            }
-        };
-
-        fetchShopInfo();
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-        });
-    }, []);
 
     const defaultProduct = {
         id: 0,
-        shop: shopInfo?.shopName || "Магазин не вказано",
+        shop: product.Shop.name || "Магазин не вказано",
         name: "Назва не вказана",
         price: 0,
         discountPercentage: 0,

@@ -5,13 +5,13 @@ import ReactPaginate from "react-paginate";
 import '../styles/Pagination.css';
 import { getPaginatedProducts } from "../../api/ItemsApi.jsx";
 import Empty from "../../assets/empty.jpg";
-import { searchProducts } from "../../api/searchApi.jsx"; // Import the searchProducts function
+import { searchProducts } from "../../api/searchApi.jsx";
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
 }
 
-function ProductGrid({ filters }) { // Accept filters as a prop
+function ProductGrid({ filters }) {
     const [products, setProducts] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
     const [loading, setLoading] = useState(false);

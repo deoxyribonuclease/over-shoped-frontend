@@ -8,6 +8,7 @@ import ScrollToTopButton from "./components/components/ScrollToTopButton.jsx";
 import AddPage from "./layout/element/AddPage.jsx";
 import {useState} from "react";
 import Modal from "./components/components/Modal.jsx"
+import ShopDashboard from "./layout/element/ShopDashboard.jsx";
 
 function App() {
     const { state } = useGlobalContext();
@@ -38,6 +39,7 @@ function App() {
                         <Route path="/" element={<MainPage />} />
                         <Route path="/search/contains/:searchText" element={<MainPage />} />
                         <Route path="/open" element={<AddPage />} />
+                        <Route path="/shop-dashboard" element={<ShopDashboard />} />
                     </Routes>
                 </div>
                 <ScrollToTopButton />

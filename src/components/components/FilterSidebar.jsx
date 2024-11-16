@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect, useMemo} from "react";
 import ProductGrid from "./ProductGrid.jsx";
 import '../styles/filtersidebar.css';
 import MultiRangeSlider from "./MultiRangeSlider.jsx";
@@ -106,7 +106,7 @@ function FilterSidebar({ isShowing, onSortChange }) {
         setRatingRange({ min, max });
     };
 
-    const filters = {
+    const filters = useMemo(() => ({
         shopId: selectedShopIds,
         categoryId: selectedCategoryId,
         priceRange: priceRange,
@@ -115,8 +115,7 @@ function FilterSidebar({ isShowing, onSortChange }) {
         orderBy: selectedOrder || 'null',
         page: 1,
         itemsPerPage: 16
-    };
-
+    }), [selectedShopIds, selectedCategoryId, priceRange, ratingRange, selectedProperties, selectedOrder]);
     const resetFilters = () => {
         setSelectedShopIds([]);
         setSelectedCategoryId("");

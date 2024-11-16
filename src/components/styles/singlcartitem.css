@@ -10,7 +10,7 @@
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease;
-    overflow-x: hidden; /* Забороняє горизонтальний оверфлоу */
+    overflow-x: hidden;
 }
 
 .single-item-wrapper:hover {
@@ -39,10 +39,10 @@
     color: var(--dark-grayish-blue);
     line-height: 1.2;
     cursor: pointer;
-    overflow: hidden;             /* Обрізає зайвий текст */
-    white-space: nowrap;          /* Запобігає переносу на новий рядок */
-    text-overflow: ellipsis;      /* Додає три крапки в кінці, якщо текст не вміщається */
-    max-width: 30rem;             /* Максимальна ширина елемента */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 30rem;
 }
 
 

@@ -1,14 +1,14 @@
 .modal-header {
     background-color: #232F3E;
-    color: #ffffff; /* Білий колір тексту */
+    color: #ffffff;
     padding: 15px;
-    border-top-left-radius: 10px; /* Заокруглення лівого верхнього кута */
-    border-top-right-radius: 10px; /* Заокруглення правого верхнього кута */
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     font-size: 20px;
     text-align: center;
     font-weight: bold;
-    width: 100%; /* Встановлення ширини на 100% */
-    box-sizing: border-box; /* Урахування відступів в загальній ширині */
+    width: 100%;
+    box-sizing: border-box;
 }
 .header-title{
     font-size:20px;
