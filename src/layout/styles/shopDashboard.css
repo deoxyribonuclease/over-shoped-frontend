@@ -1,0 +1,134 @@
+
+.shop-dashboard-container {
+    margin: 3rem;
+    display: flex;
+    justify-content: center;
+
+    min-height: 60vh;
+
+}
+
+
+.sidebar-shop {
+    width: 300px;
+    background-color: #59607A;
+    padding: 20px;
+    color: #fff;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+
+
+
+}
+.sidebar-shop button.active {
+    background-color: #448d8d;
+    color: white;
+}
+
+.sidebar-shop button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    background-color: #1c2c38;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar-shop button:hover {
+    background-color: #51a6a6;
+}
+
+
+.content-shop {
+    flex: 1;
+    max-width: 900px;
+    background-color: #ffffff;
+    padding: 30px;
+    margin-left: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    /* Форма ShopForm */
+    form {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    form label {
+        font-size: 16px;
+        color: #333;
+        font-weight: bold;
+        justify-content: space-between;
+        word-wrap: break-word;
+        white-space: normal;
+    }
+
+    form span {
+        font-size: 16px;
+        color: #333;
+        margin-left: 10px;
+        font-weight: normal;
+    }
+
+    form input,
+    form textarea {
+        width: 100%;
+        padding: 1.6rem;
+        font-size: 1.8rem;
+        border: 1px solid var(--light-grayish-blue);
+        border-radius: 6px;
+        margin-bottom: 1.6rem;
+        color: var(--dark-grayish-blue);
+        background-color: var(--pale-orange);
+        line-height: 1.6rem;
+        resize: none;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    form input:focus,
+    form textarea:focus {
+        border-color: #51a6a6;
+        outline: none;
+    }
+
+
+
+    .no-shop{
+        text-align: center;
+        font-size: 16px;
+        color: #333;
+        font-weight: bold;
+    }
+
+    .no-container{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .no-shop-button{
+
+        padding: 12px;
+        background-color: #51a6a6;
+        border: none;
+        color: #fff;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .no-shop-button:hover {
+        background-color: #3d8989;
+    }
+}
+

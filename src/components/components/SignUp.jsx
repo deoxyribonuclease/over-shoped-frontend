@@ -12,7 +12,7 @@ import {registerUser} from "../../api/userApi.jsx";
 
 
 const SignUp = ({onSwitchForm, triggerAlert}) => {
-//змінні для валідації
+
 const [name,setName] = useState('');
 const [nameError, setNameError] = useState('');
 const [email, setEmail] = useState('');
@@ -24,7 +24,6 @@ const [repeatPasswordError, setRepeatPasswordError] = useState('');
 
 
 
-//показати / сховати пароль
 const [showPassword,setShowPassword] = useState(false);
 const [showRepeatPassword,setShowRepeatPassword] = useState(false);
 
@@ -34,7 +33,6 @@ const togglePasswordVisibility = () => {
 const toggleRepeatPasswordVisibility = () => {
     setShowRepeatPassword(!showRepeatPassword);
 }
-//функції для валідації
 const handleNameChange = (event) => {
    setName(event.target.value);
    setNameError('');
@@ -51,7 +49,7 @@ const handleRepeatPasswordChange = (event) => {
     setRepeatPassword(event.target.value);
     setRepeatPasswordError('');
 }
-//реалізація валідації "покрокової" код тупий до всрачки
+
  const validateFields = () => {
 
      const nameErr = validateName(name);
