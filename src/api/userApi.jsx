@@ -14,7 +14,6 @@ export const registerUser = async (email, password, name) => {
         const response = await axios.post(`${API_BASE_URL}/auth/register`, {
              email: email, password: password, name: name
         });
-        console.log(response);
         return response.data;
     } catch (error) {
         console.error("Error register user:", error);
@@ -27,7 +26,6 @@ export const loginUser = async (email, password) => {
         const response = await axios.post(`${API_BASE_URL}/auth/login`, {
             email: email, password: password
         });
-        console.log(response);
         return response.data;
     } catch (error) {
         console.error("Error register user:", error);
@@ -38,7 +36,6 @@ export const loginUser = async (email, password) => {
 export const getUserById = async (userId) => {
     try {
         const response = await axios.get(`${API_BASE_URL}/users/${userId}`,);
-        console.log(response);
         return response.data;
     } catch (error) {
         console.error("Error fetching user:", error);
@@ -75,7 +72,6 @@ export const updateUser = async (userId, updatedData) => {
                 },
             }
         );
-        console.log(response);
         return response.data;
     } catch (error) {
         console.error("Error updating user:", error);
@@ -91,10 +87,54 @@ export const deleteUser = async (userId) => {
                 Authorization: `Bearer ${authToken}`,
             },
         });
-        console.log(response);
         return response.data;
     } catch (error) {
         console.error("Error deleting user:", error);
+        throw error;
+    }
+};
+
+export const addToFavorites = async (userId, productId) => {
+    try {
+        const authToken = getAuthTokenFromCookies();
+        const response = await axios.post(`${API_BASE_URL}/favorites/${userId}/${productId}`, {
+            headers: {
+                Authorization: `Bearer ${authToken}`,
+            },
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Error adding to favorites:", error);
+        throw error;
+    }
+};
+
+export const removeFromFavorites = async (userId, productId) => {
+    try {
+        const authToken = getAuthTokenFromCookies();
+        const response = await axios.delete(`${API_BASE_URL}/favorites/${userId}/${productId}`, {
+            headers: {
+                Authorization: `Bearer ${authToken}`,
+            },
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Error removing from favorites:", error);
+        throw error;
+    }
+};
+
+export const getUserFavorites = async (userId) => {
+    try {
+        const authToken = getAuthTokenFromCookies();
+        const response = await axios.get(`${API_BASE_URL}/favorites/${userId}`, {
+            headers: {
+                Authorization: `Bearer ${authToken}`,
+            },
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching user favorites:", error);
         throw error;
     }
 };

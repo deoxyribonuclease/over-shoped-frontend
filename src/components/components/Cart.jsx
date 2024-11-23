@@ -46,9 +46,9 @@ const Cart = () => {
     }
 
     return (
-        <div className="cart-wrapper">
+        <div className="cart-wrapper" style={{backgroundColor:"#f4f4f5", padding:"20px"}}>
             <header>
-                <p style={{fontSize:"30px"}}>Кошик</p>
+                <p style={{fontSize:"30px",color:"#737373FF", fontWeight:"700"}}>Кошик</p>
             </header>
             <div className="divider"></div>
             <ul className="cart-items">
@@ -63,7 +63,7 @@ const Cart = () => {
                         />
                     ))
                 ) : (
-                    <p className="empty" style={{fontSize:"20px"}}>Ваш кошик порожній.</p>
+                    <p className="empty" style={{marginTop:"60px"}}>Ваш кошик порожній.</p>
                 )}
             </ul>
             <Button>Оплата</Button>

@@ -36,7 +36,6 @@ export const fetchCategoryProperties = async (categoryId) => {
 
 export const searchProducts = async (filters) => {
     try {
-        console.log(filters);
 
         const params = {};
         if (filters.shopId && filters.shopId.length > 0) {
@@ -60,7 +59,6 @@ export const searchProducts = async (filters) => {
             str = str.slice(0, 1)  + '{'+ str.slice(1, str.length - 1) + '}' + str.slice(str.length - 1);
             params.properties = str;
         }
-        console.log()
 
         params.page = filters.page || 1;
         params.pageSize = filters.pageSize || 16;

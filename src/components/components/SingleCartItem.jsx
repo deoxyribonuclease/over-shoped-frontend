@@ -17,6 +17,7 @@ const SingleCartItem = ({ productId, quantity, onRemoveItem, onUpdateQuantity, h
             setProduct(productData);
         };
 
+
         fetchData();
     }, [productId]);
 
@@ -33,8 +34,10 @@ const SingleCartItem = ({ productId, quantity, onRemoveItem, onUpdateQuantity, h
     const totalPrice = (actualPrice * quantity).toFixed(2);
 
     const handleIncrement = () => {
-        onUpdateQuantity(productId, quantity + 1);
-        window.dispatchEvent(new Event('storage'));
+        if(quantity < product.amount) {
+            onUpdateQuantity(productId, quantity + 1);
+            window.dispatchEvent(new Event('storage'));
+        }
     };
 
     const handleDecrement = () => {

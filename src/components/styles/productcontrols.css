@@ -31,6 +31,36 @@
         }
     }
 
+
+    .heart-icon {
+        width: 50%;
+        height: 24px;
+        cursor: pointer;
+        transition: transform 0.3s ease, fill 0.3s ease, stroke 0.3s ease;
+
+    }
+
+    .favorite-button{
+
+    }
+    .favorite-container {
+        display: flex;
+        align-items: center;
+    }
+    .heart-icon.empty {
+        color: gray;
+        transform: scale(1);
+    }
+
+    .heart-icon.filled {
+        width: 50%;
+        color: #ff0000;
+        fill: red;
+        transform: scale(1.2);
+        transform-origin: center;
+    }
+
+
     .cart:hover {
         opacity: 0.6;
     }

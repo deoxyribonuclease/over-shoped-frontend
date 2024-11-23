@@ -7,5 +7,6 @@ import Minus from "./Minus"
 import Next from "./Next"
 import Plus from "./Plus"
 import Previous from "./Previous"
+import Heart from "./Heart.jsx"
 
-export { Cart, Close, Delete, Logo, Menu, Minus, Next, Plus, Previous }
+export { Cart, Close, Delete, Logo, Menu, Minus, Next, Plus, Previous, Heart }

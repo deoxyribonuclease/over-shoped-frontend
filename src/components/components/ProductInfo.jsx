@@ -63,6 +63,7 @@ ProductInfo.defaultProps = {
   salePercent: 0,
   amount: 0,
   rating: null,
+  stock:0,
 };
 
 export default ProductInfo;

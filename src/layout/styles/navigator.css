@@ -8,11 +8,12 @@
     display: flex;
     align-items: center;
     gap: 0.2rem;
-    width: 80%;
-    margin-left: 4rem;
+    width: 100%;
+
 }
 
 .search-input {
+
     flex: 1;
     padding: 0.8rem 1rem;
     border: none;
@@ -59,35 +60,18 @@ nav {
 
 .nav-left {
     display: flex;
-    align-items: center;
     gap: 1.6rem;
+    margin-left: 200px;
+
 }
 .nav-center {
     flex-grow: 1;
     display: flex;
+    margin-left: 4rem;
+
 }
 .menu-btn {
     display: block;
-}
-
-@media only screen and (min-width: 768px) {
-    .menu-btn {
-        display: none;
-    }
-
-    .nav-links {
-        display: flex;
-        gap: 3.2rem;
-        list-style: none;
-        margin-left: 3rem;
-    }
-
-    .nav-links a {
-        text-decoration: none;
-        font-size: 2.0rem;
-        text-transform: capitalize;
-        color: white;
-    }
 }
 
 .nav-right {
@@ -96,6 +80,9 @@ nav {
     align-items: center;
 }
 
+.heart-icon.white {
+    color: #ffffff;
+}
 
 .order-link {
     display: flex;
@@ -143,33 +130,8 @@ nav {
     object-fit: cover;
 }
 
-@media only screen and (min-width: 768px) {
-    .navigator-wrapper {
-        padding: 0.6rem 0 1rem;
-        max-width: 80%;
-        margin: 0 auto;
-    }
 
-    .nav-right {
-        margin-left: 3rem;
-        gap: 4.7rem;
-        justify-content: space-between;
-    }
 
-    .avatar-btn {
-        height: 3.1rem;
-        width: 3.1rem;
-        border-radius: 50%;
-        overflow: hidden;
-    }
-
-    .avatar-btn:hover {
-        outline: 2px solid white;
-
-    }
-}
-
-@media only screen and (min-width: 1000px) {
     .navigator-wrapper {
         padding: 0.6rem 0 1rem;
         max-width: 80%;
@@ -179,6 +141,7 @@ nav {
     .nav-right {
         gap: 2.1rem;
         justify-content: space-between;
+        margin-left: 30px;
     }
 
     .avatar-btn {
@@ -191,7 +154,11 @@ nav {
     .avatar-btn img {
         width: 100%;
     }
-}
+    .avatar-btn:hover {
+        outline: 2px solid white;
+
+    }
+
 
 .goog-te-banner-frame.skiptranslate {
     display: none !important;

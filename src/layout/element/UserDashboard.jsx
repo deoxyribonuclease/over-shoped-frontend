@@ -7,6 +7,7 @@ import PersonalInformation from "../../components/components/PersonalInformation
 import TimedAlert from "../../components/components/TimedAlert.jsx";
 import Cart from "../../components/components/Cart.jsx";
 import UserReviews from "../../components/components/UserReviews.jsx";
+import Favorites from "../../components/components/Favorites.jsx";
 
 const UserDashboard = () => {
     const [userId, setUserId] = useState(null);
@@ -60,7 +61,7 @@ const UserDashboard = () => {
             case "cart":
                 return <Cart/>;
             case "favorites":
-                return <div>Улюблені</div>;
+                return userId && <Favorites userId={userId} />;
             case "my-review":
                 return <UserReviews userId={userId} />;
             default:
@@ -75,7 +76,7 @@ const UserDashboard = () => {
                     onClick={() => setActiveTab("personal-information")}
                     className={activeTab === "personal-information" ? "active" : ""}
                 >
-                    Аккаунт
+                    Мій кабінет
                 </button>
                 <button
                     onClick={() => setActiveTab("orders")}

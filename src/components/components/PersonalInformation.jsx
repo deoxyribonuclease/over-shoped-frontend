@@ -141,7 +141,7 @@ const PersonalInformation = ({ userId, setAlertSeverity,setAlertMessage,setAlert
 
     return (
         <div className="personal-info-container">
-            <h1 className="title">Особисті дані</h1>
+            <h1 className="title" style={{fontSize:"30px",color:"#737373FF", fontWeight:"700"}}>Особисті дані</h1>
             <div className="info-card">
                 <div className="section">
                     <div className="image-container">

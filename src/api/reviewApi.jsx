@@ -33,7 +33,6 @@ export const addReview = async (userId, productId, text, rating) => {
             }
         );
 
-        console.log(response);
         return response.data;
     } catch (error) {
         console.error("Error adding review:", error);
@@ -45,7 +44,6 @@ export const getReviewsByProductId = async (productId) => {
     try {
         const response = await axios.get(`${API_BASE_URL}/reviews/product/${productId}`);
 
-        console.log(response);
         return response.data;
     } catch (error) {
         console.error("Error fetching reviews:", error);
@@ -69,7 +67,6 @@ export const getReviewsByUserId = async (userId) => {
             }
         );
 
-        console.log(response);
         return response.data;
     } catch (error) {
         console.error("Error fetching reviews by user:", error);

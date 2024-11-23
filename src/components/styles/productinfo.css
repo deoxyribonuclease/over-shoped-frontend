@@ -21,7 +21,7 @@
             word-wrap: break-word;
             overflow-wrap: break-word;
             hyphens: auto;
-            max-width: 100%; /* Додаємо обмеження ширини */
+            max-width: 100%;
         }
 
         .product-description {
@@ -31,7 +31,6 @@
             margin-bottom: 2.4rem;
         }
 
-        /* Rating and Stock Section Styling */
         .rating-stock-section {
             display: flex;
             justify-content: space-between;

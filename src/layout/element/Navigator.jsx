@@ -113,19 +113,10 @@ const Navigator = ({ openModal }) => {
       <header className="navigator-wrapper">
         <nav>
           <div className="nav-left">
-            <button onClick={() => setShowingCart(!showingCart)} className="menu-btn">
-              <Menu/>
-            </button>
             <div className="logo" onClick={handleLogoClick}>
               <Logo/>
             </div>
-            <ul className="nav-links">
-              {navLinks.map((link, idx) => (
-                  <li key={idx}>
-                    <a href="/open">{link}</a>
-                  </li>
-              ))}
-            </ul>
+
           </div>
           <div className="nav-center">
             <form className="search-form" onSubmit={handleSearchSubmit}>
@@ -144,7 +135,7 @@ const Navigator = ({ openModal }) => {
               <List/>
             </a>
             <a onClick={handleFavoritesClick} className="favorites-link">
-              <Heart/>
+              <Heart className={"white"}/>
             </a>
             <button
                 onClick={() => setShowingCart(!showingCart)}

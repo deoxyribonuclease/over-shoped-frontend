@@ -44,16 +44,6 @@ export const fetchProductProperties = async (productId) => {
     }
 };
 
-export const fetchProductsByShopId = async (shopId) => {
-    try {
-        const response = await axios.get(`${API_BASE_URL}/products/${shopId}`);
-        return response.data; // Повертаємо масив продуктів
-    } catch (error) {
-        console.error("Помилка завантаження товарів для магазину:", error);
-        throw error;
-    }
-};
-
 export const createProduct = async (productData) => {
     try {
         const response = await axios.post(`${API_BASE_URL}/products`, productData);
