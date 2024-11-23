@@ -93,6 +93,22 @@ const Navigator = ({ openModal }) => {
     }
   };
 
+  const handleOrderClick = () => {
+    if (token) {
+      navigate('/cabinet?tab=orders');
+    } else {
+      openModal();
+    }
+  };
+
+  const handleFavoritesClick = () => {
+    if (token) {
+      navigate('/cabinet?tab=favorites');
+    } else {
+      openModal();
+    }
+  };
+
   return (
       <header className="navigator-wrapper">
         <nav>
@@ -124,10 +140,10 @@ const Navigator = ({ openModal }) => {
             </form>
           </div>
           <div className="nav-right">
-            <a href="/cabinet?tab=orders" className="order-link">
+            <a onClick={handleOrderClick} className="order-link">
               <List/>
             </a>
-            <a href="/cabinet?tab=favorites" className="favorites-link">
+            <a onClick={handleFavoritesClick} className="favorites-link">
               <Heart/>
             </a>
             <button
@@ -147,7 +163,7 @@ const Navigator = ({ openModal }) => {
             {userRole === "Магазин" ? (
                 <button className="search-button" onClick={handlShopPanelClick}>Магазин-панель</button>
             ) : (
-               <div></div>
+                <div></div>
             )}
             <FloatingCart setShowingCart={setShowingCart}
                           showingCart={showingCart}
