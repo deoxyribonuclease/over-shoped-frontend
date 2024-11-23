@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchProductProperties } from "../../Api/ItemsApi.jsx";
-import "../styles/productPropertiesTable.css"; // Add a separate CSS file for styles
+import "../styles/productPropertiesTable.css";
 
 const ProductPropertiesTable = ({ productId }) => {
     const [properties, setProperties] = useState([]);

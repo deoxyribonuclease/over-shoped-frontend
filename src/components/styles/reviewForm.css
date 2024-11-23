@@ -232,6 +232,7 @@
         height: 45px;
         outline: 1px solid white;
         border-radius: 50%;
+        object-fit: cover;
     }
 }
 .rating-and-character-count {

@@ -53,6 +53,31 @@ export const getReviewsByProductId = async (productId) => {
     }
 };
 
+export const getReviewsByUserId = async (userId) => {
+    try {
+        const token = getAuthTokenFromCookies();
+        if (!token) {
+            throw new Error("Authorization token not found in cookies");
+        }
+
+        const response = await axios.get(
+            `${API_BASE_URL}/reviews/user/${userId}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+
+        console.log(response);
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching reviews by user:", error);
+        throw error;
+    }
+};
+
+
 export const editReview = async (userId, productId, text, rating) => {
     try {
         const token = getAuthTokenFromCookies();
@@ -98,7 +123,7 @@ export const deleteReview = async (userId, productId) => {
         );
 
         console.log(response);
-        return response.data; // Повертаємо результат видалення
+        return response.data;
     } catch (error) {
         console.error("Error deleting review:", error);
         throw error;

@@ -5,6 +5,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "../styles/userDashboard.css";
 import PersonalInformation from "../../components/components/PersonalInformation.jsx";
 import TimedAlert from "../../components/components/TimedAlert.jsx";
+import Cart from "../../components/components/Cart.jsx";
+import UserReviews from "../../components/components/UserReviews.jsx";
 
 const UserDashboard = () => {
     const [userId, setUserId] = useState(null);
@@ -56,11 +58,11 @@ const UserDashboard = () => {
             case "orders":
                 return <div>Замовлення</div>;
             case "cart":
-                return <div>Кошик</div>;
+                return <Cart/>;
             case "favorites":
                 return <div>Улюблені</div>;
             case "my-review":
-                return <div>Мої відгуки</div>;
+                return <UserReviews userId={userId} />;
             default:
                 return <div>Виберіть вкладку</div>;
         }
