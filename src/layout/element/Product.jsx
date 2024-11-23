@@ -25,7 +25,6 @@ const Product = () => {
             setLoading(true);
             try {
                 const fetchedProduct = await fetchProductById(id);
-                console.log(fetchedProduct);
                 setProduct({ ...fetchedProduct, images: fetchedProduct.images.length ? fetchedProduct.images : productImages });
             } catch (err) {
                 setError(err.message);
@@ -43,7 +42,6 @@ const Product = () => {
             if (product && product.shopId) {
                 try {
                     const shopData = await fetchShopById(product.shopId);
-                    console.log(shopData);
                     setShopInfo(shopData);
                 } catch (error) {
                     console.error("Error fetching shop info:", error);
@@ -91,7 +89,7 @@ const Product = () => {
                     productImages={product.images}
                     productThumbnails={product.images}
                 />
-                <ProductInfo {...product} {...shopInfo} />
+                <ProductInfo {...product} {...shopInfo}/>
             </div>
             <ProductPropertiesTable productId={id} />
             <ReviewForm productId={id} />

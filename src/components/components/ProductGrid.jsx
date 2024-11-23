@@ -26,14 +26,12 @@ function ProductGrid({ filters }) {
         const fetchProducts = async () => {
             setLoading(true);
             try {
-                console.log(filters)
                 setProducts([]);
                 const data = await searchProducts({
                     ...filters,
                     page: currentPage,
                     itemsPerPage: itemsPerPage,
                 });
-                console.log(data)
                 setProducts(data.products);
                 setTotalPages(data.totalPages);
             } catch (error) {

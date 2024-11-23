@@ -1,0 +1,24 @@
+
+.favorites-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f4f4f5;
+    max-height: 800px;
+
+    h3 {
+        font-size: 2.4rem;
+        font-weight: 700;
+        margin-bottom: 1.6rem;
+        color: var(--dark-grayish-blue);
+    }
+}
+
+.favorites-container-item {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
