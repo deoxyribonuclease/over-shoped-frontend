@@ -9,6 +9,7 @@ import AddPage from "./layout/element/AddPage.jsx";
 import {useState} from "react";
 import Modal from "./components/components/Modal.jsx"
 import ShopDashboard from "./layout/element/ShopDashboard.jsx";
+import UserDashboard from "./layout/element/UserDashboard.jsx";
 
 function App() {
     const { state } = useGlobalContext();
@@ -40,6 +41,7 @@ function App() {
                         <Route path="/search/contains/:searchText" element={<MainPage />} />
                         <Route path="/open" element={<AddPage />} />
                         <Route path="/shop-dashboard" element={<ShopDashboard />} />
+                        <Route path="/cabinet" element={<UserDashboard />} />
                     </Routes>
                 </div>
                 <ScrollToTopButton />

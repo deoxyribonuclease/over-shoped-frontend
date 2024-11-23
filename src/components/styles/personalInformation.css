@@ -1,0 +1,215 @@
+/* personalInformation.css */
+.personal-info-container {
+    width: 100%;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+    .title {
+        text-align: left;
+        font-size: 22px;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    .info-card {
+        border: 1px solid #d3d3d3;
+        border-radius: 10px;
+        padding: 20px;
+        background-color: #fff;
+        margin-bottom: 20px;
+    }
+
+
+    .section {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #d3d3d3;
+
+        .name{
+            margin-bottom: 10px;
+        }
+
+        .p-bottom{
+            margin-top: 30px;
+        }
+
+    }
+
+    .image-container {
+        position: relative;
+        display: inline-block;
+    }
+
+    .profile-image {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+
+    }
+
+    .profile-image.editable {
+        filter: brightness(0.7);
+        cursor: pointer;
+    }
+
+    .image-overlay {
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 85%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        cursor: pointer;
+
+    }
+
+    .image-container:hover .image-overlay {
+        opacity: 1;
+    }
+
+    .edit-icon {
+        width: 34px;
+        height: 34px;
+        margin-right: 6px;
+    }
+
+
+    input {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 5px;
+        font-size: 14px;
+        width: calc(100% - 10px);
+    }
+
+    .section:last-child {
+        border-bottom: none;
+    }
+
+    .section img.profile-image {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin-right: 15px;
+        border: 2px solid #1c2c38;
+    }
+
+    .section p {
+        margin-left: 3rem;
+        font-size: 16px;
+    }
+
+    .section h3 {
+        font-size: 18px;
+        margin-bottom: 50px;
+        font-weight: bold;
+    }
+
+    .edit-button {
+        display: block;
+        margin: 0 auto;
+        width: 250px;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #38321c;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .edit-button:hover {
+        background-color: #51a6a6;
+    }
+
+
+
+    .cancel-button {
+        display: block;
+        margin: 0 auto;
+        width: 250px;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #381c23;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .cancel-button:hover {
+        background-color: #51a6a6;
+    }
+
+    .save-button {
+        display: block;
+        margin: 0 auto;
+        width: 250px;
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #1c2c38;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .save-button:hover {
+        background-color: #51a6a6;
+    }
+
+
+    .action-buttons {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .action-button {
+        flex: 1;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #d3d3d3;
+        border-radius: 5px;
+        text-align: center;
+        cursor: pointer;
+        background-color: #1c2c38;
+        color: white;
+        transition: background-color 0.3s ease;
+    }
+
+    .action-button:hover {
+        background-color: #51a6a6;
+    }
+
+    .action-button.delete-button {
+        color: #fff;
+        background-color: #381c23;
+        border: none;
+    }
+
+    .action-button.delete-button:hover {
+        background-color: #51a6a6;
+    }
+}
+
+
+

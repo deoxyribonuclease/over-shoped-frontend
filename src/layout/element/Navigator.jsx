@@ -76,7 +76,7 @@ const Navigator = ({ openModal }) => {
 
   const handleAvatarClick = () => {
     if (token) {
-        navigate('/profile');
+        navigate('/cabinet');
     } else {
       openModal();
     }
@@ -124,10 +124,10 @@ const Navigator = ({ openModal }) => {
             </form>
           </div>
           <div className="nav-right">
-            <a href="/orders" className="order-link">
+            <a href="/cabinet?tab=orders" className="order-link">
               <List/>
             </a>
-            <a href="/favorites" className="favorites-link">
+            <a href="/cabinet?tab=favorites" className="favorites-link">
               <Heart/>
             </a>
             <button

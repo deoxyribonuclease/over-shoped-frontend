@@ -63,3 +63,38 @@ export const getUserImageId = async (userId) => {
         return null;
     }
 };
+
+
+export const updateUser = async (userId, updatedData) => {
+    try {
+        const authToken = getAuthTokenFromCookies();
+        const response = await axios.patch(`${API_BASE_URL}/users/${userId}`, updatedData,
+            {
+                headers: {
+                    Authorization: `Bearer ${authToken}`,
+                },
+            }
+        );
+        console.log(response);
+        return response.data;
+    } catch (error) {
+        console.error("Error updating user:", error);
+        throw error;
+    }
+};
+
+export const deleteUser = async (userId) => {
+    try {
+        const authToken = getAuthTokenFromCookies();
+        const response = await axios.delete(`${API_BASE_URL}/users/${userId}`, {
+            headers: {
+                Authorization: `Bearer ${authToken}`,
+            },
+        });
+        console.log(response);
+        return response.data;
+    } catch (error) {
+        console.error("Error deleting user:", error);
+        throw error;
+    }
+};

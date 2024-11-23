@@ -1,0 +1,84 @@
+.user-dashboard-container {
+    margin: 3rem;
+    display: flex;
+    justify-content: center;
+    min-height: 60vh;
+}
+
+.sidebar-user {
+    width: 300px;
+    background-color: #59607A;
+    padding: 20px;
+    color: #fff;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-user button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    background-color: #1c2c38;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar-user button.active {
+    background-color: #448d8d;
+    color: white;
+}
+
+.sidebar-user button:hover {
+    background-color: #51a6a6;
+}
+
+.content-user {
+    flex: 1;
+    max-width: 900px;
+    background-color: #ffffff;
+    padding: 30px;
+    margin-left: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.tab-content {
+    font-size: 16px;
+    color: #333;
+}
+
+.tab-content h2 {
+    font-size: 24px;
+    color: #59607A;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.tab-content p {
+    margin-bottom: 10px;
+    line-height: 1.5;
+    color: #444;
+}
+
+
+.tab-content .action-button {
+    padding: 12px;
+    background-color: #51a6a6;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.tab-content .action-button:hover {
+    background-color: #3d8989;
+}
