@@ -10,6 +10,7 @@ import {useState} from "react";
 import Modal from "./components/components/Modal.jsx"
 import ShopDashboard from "./layout/element/ShopDashboard.jsx";
 import UserDashboard from "./layout/element/UserDashboard.jsx";
+import OrderForm from "./components/components/OrderForm.jsx";
 
 function App() {
     const { state } = useGlobalContext();
@@ -42,6 +43,7 @@ function App() {
                         <Route path="/open" element={<AddPage />} />
                         <Route path="/shop-dashboard" element={<ShopDashboard />} />
                         <Route path="/cabinet" element={<UserDashboard />} />
+                        <Route path="/checkout" element={<OrderForm />} />
                     </Routes>
                 </div>
                 <ScrollToTopButton />
@@ -50,5 +52,5 @@ function App() {
         </Router>
     );
 }
-// <Sidebar2 isShowing={state.showSidebar} />
+
 export default App;

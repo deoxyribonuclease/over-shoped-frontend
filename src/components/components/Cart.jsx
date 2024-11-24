@@ -1,11 +1,13 @@
 import SingleCartItem from "./SingleCartItem.jsx";
 import Button from "./Button.jsx";
 import { useState, useEffect } from 'react';
+import { useNavigate} from 'react-router-dom';
 import '../styles/floatingcart.css';
 
 const Cart = () => {
     const [cart, setCart] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const updateCartFromLocalStorage = () => {
@@ -34,6 +36,12 @@ const Cart = () => {
         );
         localStorage.setItem("cart", JSON.stringify(updatedCart));
         setCart(updatedCart);
+    };
+
+    const handlePaymentClick = () => {
+        if (cart.length > 0) {
+            navigate("/checkout");
+        }
     };
 
     if (isLoading) {
@@ -66,7 +74,7 @@ const Cart = () => {
                     <p className="empty" style={{marginTop:"60px"}}>Ваш кошик порожній.</p>
                 )}
             </ul>
-            <Button>Оплата</Button>
+            <Button func={handlePaymentClick}>Оплата</Button>
         </div>
     );
 };

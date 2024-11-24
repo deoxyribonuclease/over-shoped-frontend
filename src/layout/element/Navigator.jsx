@@ -10,7 +10,6 @@ import {getUserById, getUserImageId} from "../../api/userApi.jsx";
 import { jwtDecode } from "jwt-decode";
 import "../styles/navigator.css";
 
-const navLinks = ["Каталог", "me", "please"];
 
 const Navigator = ({ openModal }) => {
   const [showingCart, setShowingCart] = useState(false);

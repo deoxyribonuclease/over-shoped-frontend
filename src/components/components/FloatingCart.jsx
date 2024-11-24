@@ -2,9 +2,11 @@ import SingleCartItem from "./SingleCartItem.jsx";
 import Button from "./Button.jsx";
 import { useState, useEffect } from 'react';
 import '../styles/floatingcart.css';
+import { useNavigate} from 'react-router-dom';
 
 const FloatingCart = ({ className, showingCart, setShowingCart }) => {
     const [cart, setCart] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const updateCartFromLocalStorage = () => {
@@ -37,7 +39,12 @@ const FloatingCart = ({ className, showingCart, setShowingCart }) => {
         setCart(updatedCart);
     };
 
-
+    const handlePaymentClick = () => {
+        if (cart.length > 0) {
+            navigate("/checkout");
+            setShowingCart(!showingCart);
+        }
+    };
 
     return (
         <div className={`floating-cart-wrapper ${className}`}>
@@ -64,7 +71,7 @@ const FloatingCart = ({ className, showingCart, setShowingCart }) => {
                         <p className="empty">Ваш кошик порожній.</p>
                     )}
                 </ul>
-                <Button>Оплата</Button>
+                <Button func={handlePaymentClick}>Оплата</Button>
             </div>
         </div>
     );
