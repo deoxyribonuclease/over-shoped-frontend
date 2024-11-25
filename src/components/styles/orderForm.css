@@ -69,7 +69,8 @@
 .order-item img {
     max-width: 50px;
     max-height: 50px;
-    object-fit: cover;
+    object-fit: contain;
+    background-color: white;
     margin-right: 10px;
 }
 
