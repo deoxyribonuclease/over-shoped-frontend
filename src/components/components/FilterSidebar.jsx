@@ -194,7 +194,7 @@ function FilterSidebar({ isShowing, onSortChange }) {
                 <ul style={{maxHeight: isPriceCollapsed ? 0 : 100, zIndex: 5, position: 'relative'}}>
                     <MultiRangeSlider
                         min={0}
-                        max={10000}
+                        max={99999}
                         onChange={({min, max}) => handlePriceChange(min, max)}
                     />
                 </ul>
@@ -207,7 +207,7 @@ function FilterSidebar({ isShowing, onSortChange }) {
                     <MultiRangeSlider
                         min={0}
                         max={5}
-                        onChange={({min, max}) => handleRatingChange(min, max)} // Змінюємо функцію
+                        onChange={({min, max}) => handleRatingChange(min, max)}
                     />
 
 
@@ -221,7 +221,7 @@ function FilterSidebar({ isShowing, onSortChange }) {
                 <ul
                     style={{
                         backgroundColor: "#525870",
-                        maxHeight: isPropertiesCollapsed ? '0px' : '260px',
+                        maxHeight: isPropertiesCollapsed ? '0px' : '450px',
                         overflowY: 'auto',
                         transition: 'max-height 0.3s ease',
                     }}
