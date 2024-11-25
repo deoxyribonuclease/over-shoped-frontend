@@ -8,6 +8,7 @@ import TimedAlert from "../../components/components/TimedAlert.jsx";
 import Cart from "../../components/components/Cart.jsx";
 import UserReviews from "../../components/components/UserReviews.jsx";
 import Favorites from "../../components/components/Favorites.jsx";
+import Empty from "../../assets/empty.jpg";
 
 const UserDashboard = () => {
     const [userId, setUserId] = useState(null);
@@ -57,7 +58,7 @@ const UserDashboard = () => {
             case "personal-information":
                 return userId && <PersonalInformation userId={userId} setAlertSeverity={setAlertSeverity} setAlertMessage={setAlertMessage} setAlertOpen={setAlertOpen} />;
             case "orders":
-                return <div>Замовлення</div>;
+                return  <img src={Empty} alt="empty"></img>;
             case "cart":
                 return <Cart/>;
             case "favorites":

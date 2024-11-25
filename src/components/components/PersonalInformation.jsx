@@ -3,6 +3,7 @@ import "../styles/personalInformation.css";
 import { updateUser, deleteUser, getUserById, getUserImageId } from "../../api/userApi.jsx";
 import Cookies from "js-cookie";
 import {useNavigate} from "react-router-dom";
+import { avatar } from "../../assets/imagedata.js";
 
 const PersonalInformation = ({ userId, setAlertSeverity,setAlertMessage,setAlertOpen }) => {
     const [isEditing, setIsEditing] = useState(false);
@@ -146,7 +147,7 @@ const PersonalInformation = ({ userId, setAlertSeverity,setAlertMessage,setAlert
                 <div className="section">
                     <div className="image-container">
                         <img
-                            src={selectedImage || "https://via.placeholder.com/100"}
+                            src={selectedImage || avatar}
                             alt="Фото користувача"
                             className={`profile-image ${isEditing ? "editable" : ""}`}
                         />

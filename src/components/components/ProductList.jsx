@@ -120,8 +120,8 @@ const ProductList = ({ shopId }) => {
             const propertyData = {
                 categoryId: editingProduct.categoryId,
                 productId,
-                name: newProperty.name,
-                content: newProperty.content,
+                name: newProperty.name.trim(),
+                content: newProperty.content.trim(),
             };
             const newProp = await createProductProperty(productId, propertyData);
             setProductPropertiesMap({
