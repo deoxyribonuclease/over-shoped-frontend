@@ -479,7 +479,7 @@ const ProductList = ({ shopId }) => {
                                                     onChange={(e) =>
                                                         setEditingProduct({
                                                             ...editingProduct,
-                                                            price: Math.min(10000, parseFloat(e.target.value)),
+                                                            price: Math.min(99999, parseFloat(e.target.value)),
                                                         })
                                                     }
                                                     placeholder="Ціна"
