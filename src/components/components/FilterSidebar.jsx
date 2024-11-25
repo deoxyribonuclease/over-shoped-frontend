@@ -22,7 +22,7 @@ function FilterSidebar({ isShowing, onSortChange }) {
     const [properties, setProperties] = useState([]);
     const [selectedProperties, setSelectedProperties] = useState([]);
 
-    const [priceRange, setPriceRange] = useState({ min: 0, max: 10000 });
+    const [priceRange, setPriceRange] = useState({ min: 0, max: 99999 });
     const [ratingRange, setRatingRange] = useState({ min: 0, max: 5 });
 
     useEffect(() => {
@@ -122,7 +122,7 @@ function FilterSidebar({ isShowing, onSortChange }) {
         setSelectedProductTypes([]);
         setSelectedOrder(null);
         setSelectedProperties([]);
-        setPriceRange({ min: 0, max: 10000 });
+        setPriceRange({ min: 0, max: 99999 });
         setRatingRange({ min: 0, max: 5 });
         window.location.reload()
     };
